@@ -1,0 +1,13 @@
+services:
+  api:
+    build: ../backend
+    ports:
+      - "127.0.0.1:8008:8000"
+    restart: unless-stopped
+  admin:
+    image: nginx:stable-alpine
+    volumes:
+      - ../admin:/usr/share/nginx/html:ro
+    ports:
+      - "127.0.0.1:8088:80"
+    restart: unless-stopped

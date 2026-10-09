@@ -1,3 +1,5 @@
+# Local-only prototype for eventual Proxmox CT1000.
+# Do not forward these ports or expose the services publicly.
 services:
   api:
     build: ../backend
@@ -10,4 +12,11 @@ services:
       - ../admin:/usr/share/nginx/html:ro
     ports:
       - "127.0.0.1:8088:80"
+    restart: unless-stopped
+  site:
+    image: nginx:stable-alpine
+    volumes:
+      - ../site:/usr/share/nginx/html:ro
+    ports:
+      - "127.0.0.1:8080:80"
     restart: unless-stopped

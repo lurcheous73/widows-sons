@@ -19,10 +19,13 @@ struct RideOperationsScreen: View {
   @State private var helpKind: String?
   @Environment(\.scenePhase) private var scenePhase
 
-  init(eventID: String, title: String, community: CommunityStore) {
+  init(
+    eventID: String, title: String, community: CommunityStore, initialTab: RideDetailTab = .briefing
+  ) {
     self.title = title
     // One owned store for this immutable navigation destination.
     self.operations = RideOperationsStore(eventID: eventID, community: community)
+    self._tab = State(initialValue: initialTab)
   }
 
   var body: some View {
@@ -39,9 +42,10 @@ struct RideOperationsScreen: View {
             )
             .foregroundStyle(Heritage.brass)
           }
-          Picker("Ride details", selection: $tab) {
-            ForEach(RideDetailTab.allCases) { Text($0.rawValue).tag($0) }
-          }.pickerStyle(.segmented)
+          ViewThatFits(in: .horizontal) {
+            HStack(spacing: 4) { detailButtons }
+            VStack(alignment: .leading, spacing: 4) { detailButtons }
+          }.padding(4).background(Heritage.panel, in: RoundedRectangle(cornerRadius: 14))
           if let error = operations.error { Text(error).foregroundStyle(Heritage.brass) }
           switch tab {
           case .briefing: briefing(plan)
@@ -127,6 +131,22 @@ struct RideOperationsScreen: View {
       isPresented: $exportingRoute, document: GPXRouteDocument(plan: operations.plan),
       contentType: UTType(filenameExtension: "gpx") ?? .xml, defaultFilename: "Widows-Sons-ride.gpx"
     ) { _ in }
+  }
+
+  @ViewBuilder private var detailButtons: some View {
+    ForEach(RideDetailTab.allCases) { value in
+      Button {
+        tab = value
+      } label: {
+        Text(value.rawValue).font(.subheadline.weight(.semibold)).fixedSize()
+          .frame(maxWidth: .infinity, minHeight: 44).padding(.horizontal, 10)
+          .foregroundStyle(tab == value ? Heritage.brass : Heritage.paper)
+          .background(
+            tab == value ? Heritage.brass.opacity(0.15) : .clear,
+            in: RoundedRectangle(cornerRadius: 11))
+      }.buttonStyle(.plain).accessibilityAddTraits(tab == value ? .isSelected : [])
+        .accessibilityIdentifier("guardian.tab.\(value.rawValue)")
+    }
   }
 
   @ViewBuilder private var helpButtons: some View {

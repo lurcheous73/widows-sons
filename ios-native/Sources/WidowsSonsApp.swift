@@ -67,7 +67,7 @@ enum ChapterRoute: Hashable {
   case privacy, licences
   case conversation(ConversationSummary)
   case liveRide
-  case rideOperations(eventID: String, title: String)
+  case rideOperations(eventID: String, title: String, initialTab: RideDetailTab = .briefing)
 }
 
 struct ChapterShell: View {
@@ -104,7 +104,7 @@ struct ChapterShell: View {
             value: ChapterRoute.rideOperations(
               eventID: alert.eventID,
               title: store.feed?.events.first { $0.id == alert.eventID }?.title
-                ?? "Ride Guardian requests")
+                ?? "Ride Guardian requests", initialTab: .requests)
           ) {
             Label(
               alert.kind == "sos" ? "SOS request · open ride log" : "Ride check-in / help request",
@@ -163,9 +163,10 @@ struct ChapterShell: View {
           }
         case .liveRide:
           if let community = store.community { LiveRideScreen(community: community) }
-        case .rideOperations(let eventID, let title):
+        case .rideOperations(let eventID, let title, let initialTab):
           if let community = store.community {
-            RideOperationsScreen(eventID: eventID, title: title, community: community)
+            RideOperationsScreen(
+              eventID: eventID, title: title, community: community, initialTab: initialTab)
           }
         }
       }

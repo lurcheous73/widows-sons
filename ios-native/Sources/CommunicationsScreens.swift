@@ -411,7 +411,7 @@ struct IntercomCard: View {
             .accessibilityIdentifier("voice.microphone")
           }
           Text(
-            "Other audio uses system voice ducking. Headset and call interruption behaviour will be checked on the two iPhones."
+            "Your iPhone and headset manage audio routing and music levels. Set controls before moving."
           )
           .font(.caption).foregroundStyle(Heritage.muted)
           Button("Leave intercom") { Task { await community.leaveVoice() } }

@@ -1,4 +1,15 @@
-# Native Swift iOS app — 0.7.0
+# Native Swift iOS app — 0.8.0 demo
+
+The **WidowsSons-Demo** scheme provides the presentation product requested by the
+owner: a populated, interactive Swift app with a seven-step tour and Reset demo.
+It opens as a fictional member, needs no invitation or chapter service, and uses
+the same native screens and Heritage & Road design as the connected app. Read
+`../docs/product-demo.md` for the walkthrough, installation and exact boundaries.
+
+Run **WidowsSons-Demo** for a demonstration. Run **WidowsSons** for the connected
+VM20000 client. The separate `uk.thegrange.widowsSons.demo` bundle can be installed
+alongside the connected app. Demo configuration uses a reserved `.invalid` origin
+and an in-process transport that cannot contact the live chapter.
 
 The current build adds ordinary Community Sections under Comms: explicit joining,
 approval/invitations, discussions, announcements, comments, informal polls and
@@ -8,7 +19,7 @@ retained. There are no additional third-party packages in this milestone.
 
 ## Native platform and build
 
-**Active iOS implementation: Swift 6 + SwiftUI.** Version 0.7.0, minimum iOS 17.
+**Active iOS implementation: Swift 6 + SwiftUI.** Version 0.8.0, minimum iOS 17.
 The owner requested native Swift on 19 October 2026. This supersedes the Flutter
 iOS prototype while retaining the same VM20000 API, database and WordPress CMS.
 The proposed Heritage & Road design supplies the charcoal, brass, off-white,
@@ -32,8 +43,10 @@ Debug uses `http://localhost:19820`, through the existing Mac-to-VM20000 SSH
 tunnel. Start `sh tool/dev-tunnel.sh` if it is not already running.
 Do not stop another process if that port is occupied. Release defaults to
 `https://wsmba.the-grange.uk` and has no insecure transport exceptions. The
-production configuration rejects HTTP. Physical iPhone distribution requires
-trusted public HTTPS, an Apple signing team/profile and a TestFlight upload.
+production configuration rejects HTTP. The connected app needs trusted public
+HTTPS and Apple signing for physical use. TestFlight is a separate distribution
+route. The self-contained demo supports development signing without the public
+backend or a TestFlight upload.
 
 ```sh
 xcodebuild -project WidowsSons.xcodeproj -scheme WidowsSons \

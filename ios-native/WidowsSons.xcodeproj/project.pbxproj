@@ -13,6 +13,7 @@
 		12D05C7688A3BA3C1C2B43DF /* RideOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8468742EF47403943CE0CDA /* RideOperationsTests.swift */; };
 		15216815038AA4E2E358C7C6 /* ClubhouseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C382102158739BCD7EBA4299 /* ClubhouseStore.swift */; };
 		1A3088842175693329982A0C /* ThirdPartyNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = B5A045F657BE274C000FB51C /* ThirdPartyNotices.txt */; };
+		1CA0FB1CC601427E20FAC3CC /* DemoExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4012E6343AB49CE7FAD944 /* DemoExperience.swift */; };
 		210F8CA4CFE3F67FDA1A8C2B /* CommunityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854209975A06ECB9A3F9FB2F /* CommunityModels.swift */; };
 		211FB0A5375D2E015B59846F /* LiveRideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9FFC71665E145FFCFBD1D /* LiveRideScreen.swift */; };
 		2A67211D4FC043636E63456A /* ClubhouseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA2786B88EA2EFFD86E95A4 /* ClubhouseTests.swift */; };
@@ -21,6 +22,7 @@
 		359A95A4BAFD4E24EC26C380 /* MemberScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B355EE212E49E9D82581BEDF /* MemberScreens.swift */; };
 		3B744F3A6976EB8712E9485B /* RideRouteTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F0AC1430FD0573F6EDAC0A /* RideRouteTools.swift */; };
 		3C1A4021802B452BBB89E0A2 /* ClubhouseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AEE5449258358056A37046 /* ClubhouseModels.swift */; };
+		4C323D96F274F1D738F19D35 /* DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7510D57F667E396780CE097 /* DemoTests.swift */; };
 		52A0D68252AECC6FF3838E2B /* CommunityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F58DBE826B0FA14079E1FB /* CommunityTests.swift */; };
 		67BC7E4C9B47945CCA09BCD5 /* ChapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADBD7B1A81792604424193E /* ChapterTests.swift */; };
 		67CB18BE78AF9D4E7EB7E35B /* AppRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7099E1A7C9B0685A5B61EB1 /* AppRuntime.swift */; };
@@ -37,6 +39,7 @@
 		C13F3E3C07CBD737E6D6D77B /* ChapterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB431CD4D3F157D02011EFD /* ChapterAPI.swift */; };
 		C4493BD50F4D179B67588C06 /* RideRequestOutbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543F0CF1CCFF7520498F8379 /* RideRequestOutbox.swift */; };
 		C55B49712A8B907FF9DF86BC /* ChatThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209D4D52F348ED862C6C829 /* ChatThread.swift */; };
+		C7840289E6A87D3F2CF9F23B /* DemoChapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50C50249E3D95661380DC3F /* DemoChapter.swift */; };
 		CB73678F3F796C352FDC501B /* WidowsSonsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FD3977199179831DD1610 /* WidowsSonsApp.swift */; };
 		D174BBE51DB58CB5737708DE /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C52E0136F811CB6EB9663ED /* Models.swift */; };
 		D1A1461C5CD01CEB618F16BC /* CommunicationIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D46114706B0297ECF13F8D0 /* CommunicationIntents.swift */; };
@@ -64,6 +67,7 @@
 		0EB431CD4D3F157D02011EFD /* ChapterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterAPI.swift; sourceTree = "<group>"; };
 		116C64302BCB9C69B9CCDF91 /* CommunityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityStore.swift; sourceTree = "<group>"; };
 		17AEE5449258358056A37046 /* ClubhouseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubhouseModels.swift; sourceTree = "<group>"; };
+		3B4012E6343AB49CE7FAD944 /* DemoExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoExperience.swift; sourceTree = "<group>"; };
 		3E56976710776C570D77FCEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		420C4C73F847682B1BC3BBCB /* SiriMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriMessageService.swift; sourceTree = "<group>"; };
 		44236585CC25146226BE0316 /* RideOperationsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideOperationsModels.swift; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 		C68FB3A3B58DF8A9BF0D2A9B /* RideLocationDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideLocationDriver.swift; sourceTree = "<group>"; };
 		D1F95A37718C3F72AF98D73B /* PublicScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicScreens.swift; sourceTree = "<group>"; };
 		D3F629DDB21385CAE3BB9968 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		D50C50249E3D95661380DC3F /* DemoChapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoChapter.swift; sourceTree = "<group>"; };
 		DAC1C7A403F7A68FCB832B22 /* ChapterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterStore.swift; sourceTree = "<group>"; };
 		E209D4D52F348ED862C6C829 /* ChatThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatThread.swift; sourceTree = "<group>"; };
 		F0B9FFC71665E145FFCFBD1D /* LiveRideScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveRideScreen.swift; sourceTree = "<group>"; };
@@ -98,6 +103,7 @@
 		F4F56590D34D4AEF7DF96A8F /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		F5190E93214A2162960E58B6 /* ClubhouseScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubhouseScreens.swift; sourceTree = "<group>"; };
 		F7099E1A7C9B0685A5B61EB1 /* AppRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRuntime.swift; sourceTree = "<group>"; };
+		F7510D57F667E396780CE097 /* DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,7 @@
 				5ADBD7B1A81792604424193E /* ChapterTests.swift */,
 				5EA2786B88EA2EFFD86E95A4 /* ClubhouseTests.swift */,
 				04F58DBE826B0FA14079E1FB /* CommunityTests.swift */,
+				F7510D57F667E396780CE097 /* DemoTests.swift */,
 				F2BAAD418DDFD6801FD60071 /* Fixtures.swift */,
 				B8468742EF47403943CE0CDA /* RideOperationsTests.swift */,
 			);
@@ -162,6 +169,8 @@
 				B15F22F7F061D474791DF489 /* CommunicationsScreens.swift */,
 				854209975A06ECB9A3F9FB2F /* CommunityModels.swift */,
 				116C64302BCB9C69B9CCDF91 /* CommunityStore.swift */,
+				D50C50249E3D95661380DC3F /* DemoChapter.swift */,
+				3B4012E6343AB49CE7FAD944 /* DemoExperience.swift */,
 				F4F56590D34D4AEF7DF96A8F /* DesignSystem.swift */,
 				BE2E78C6CE0AEB3AA297EB32 /* IntercomCallCoordinator.swift */,
 				F0B9FFC71665E145FFCFBD1D /* LiveRideScreen.swift */,
@@ -293,6 +302,7 @@
 				67BC7E4C9B47945CCA09BCD5 /* ChapterTests.swift in Sources */,
 				2A67211D4FC043636E63456A /* ClubhouseTests.swift in Sources */,
 				52A0D68252AECC6FF3838E2B /* CommunityTests.swift in Sources */,
+				4C323D96F274F1D738F19D35 /* DemoTests.swift in Sources */,
 				10E36D97192BF90114FBB526 /* Fixtures.swift in Sources */,
 				12D05C7688A3BA3C1C2B43DF /* RideOperationsTests.swift in Sources */,
 			);
@@ -316,6 +326,8 @@
 				BF217521D9A1AA5D4C64357A /* CommunicationsScreens.swift in Sources */,
 				210F8CA4CFE3F67FDA1A8C2B /* CommunityModels.swift in Sources */,
 				E08DBA0BE30B0348EA73DDD7 /* CommunityStore.swift in Sources */,
+				C7840289E6A87D3F2CF9F23B /* DemoChapter.swift in Sources */,
+				1CA0FB1CC601427E20FAC3CC /* DemoExperience.swift in Sources */,
 				87D07F37AE64563AD6910D11 /* DesignSystem.swift in Sources */,
 				F19E22FB579B0C598F85C50B /* IntercomCallCoordinator.swift in Sources */,
 				211FB0A5375D2E015B59846F /* LiveRideScreen.swift in Sources */,
@@ -346,6 +358,23 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		07871629D8084E1E5BD9212F /* Demo-Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.thegrange.widowsSons.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WidowsSons.app/WidowsSons";
+			};
+			name = "Demo-Debug";
+		};
 		224099F16AC284144A7A5FFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -396,7 +425,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.7.0;
+				MARKETING_VERSION = 0.8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -468,7 +497,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.7.0;
+				MARKETING_VERSION = 0.8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -501,6 +530,79 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WidowsSons.app/WidowsSons";
 			};
 			name = Release;
+		};
+		5BAD00592B57E01331E54E8E /* Demo-Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.8.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_APPROACHABLE_CONCURRENCY = NO;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WIDOWS_SONS_BASE_URL = "https://demo.widows-sons.invalid";
+			};
+			name = "Demo-Debug";
 		};
 		619A762CE84C2F11B912DD5A /* CarPlay-Release */ = {
 			isa = XCBuildConfiguration;
@@ -552,7 +654,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.7.0;
+				MARKETING_VERSION = 0.8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -620,6 +722,23 @@
 			};
 			name = "CarPlay-Release";
 		};
+		A0CB044AE40BA135300A45F2 /* Demo-Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.thegrange.widowsSons.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WidowsSons.app/WidowsSons";
+			};
+			name = "Demo-Release";
+		};
 		A7CD93ACE046DD7A949669E8 /* CarPlay-Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -655,6 +774,72 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		BB156E9E9F62EB0F83A69499 /* Demo-Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_APPROACHABLE_CONCURRENCY = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WIDOWS_SONS_BASE_URL = "https://demo.widows-sons.invalid";
+			};
+			name = "Demo-Release";
 		};
 		CD7ED8EB345AFD870FCEF08B /* CarPlay-Debug */ = {
 			isa = XCBuildConfiguration;
@@ -712,7 +897,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.7.0;
+				MARKETING_VERSION = 0.8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -747,6 +932,24 @@
 			};
 			name = Release;
 		};
+		E1A4471439BE8CB1D0136A18 /* Demo-Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Configuration/Demo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Configuration/Info-Demo.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.thegrange.widowsSons.demo;
+				PRODUCT_NAME = WidowsSons;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Demo-Release";
+		};
 		EB29B3DD255D315CA5480837 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -764,6 +967,24 @@
 			};
 			name = Debug;
 		};
+		EFD52FE3FAC590BD8BAC86D2 /* Demo-Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Configuration/Demo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Configuration/Info-Demo.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.thegrange.widowsSons.demo;
+				PRODUCT_NAME = WidowsSons;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Demo-Debug";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -773,6 +994,8 @@
 				76F083822A5EE6EB20AEFBED /* CarPlay-Debug */,
 				844A3C766CA12157A94BA41E /* CarPlay-Release */,
 				EB29B3DD255D315CA5480837 /* Debug */,
+				07871629D8084E1E5BD9212F /* Demo-Debug */,
+				A0CB044AE40BA135300A45F2 /* Demo-Release */,
 				4AF33F02EB59228ECEBB0532 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -784,6 +1007,8 @@
 				CD7ED8EB345AFD870FCEF08B /* CarPlay-Debug */,
 				619A762CE84C2F11B912DD5A /* CarPlay-Release */,
 				23FA2906618DC4872D9BD8BB /* Debug */,
+				5BAD00592B57E01331E54E8E /* Demo-Debug */,
+				BB156E9E9F62EB0F83A69499 /* Demo-Release */,
 				224099F16AC284144A7A5FFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -795,6 +1020,8 @@
 				A7CD93ACE046DD7A949669E8 /* CarPlay-Debug */,
 				67720C9FE83100EA2E875CE5 /* CarPlay-Release */,
 				B0E97C5E71C99CCD8A518A85 /* Debug */,
+				EFD52FE3FAC590BD8BAC86D2 /* Demo-Debug */,
+				E1A4471439BE8CB1D0136A18 /* Demo-Release */,
 				CF149B0C065EA221924B3493 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

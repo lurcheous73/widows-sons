@@ -1,5 +1,24 @@
 # Development status — 19 October 2026
 
+## Presentation product — native 0.8.0
+
+- Following the owner's request for a product to demonstrate before polishing,
+  added a separate **WS L&R Demo** app using the existing native SwiftUI screens.
+- Seven guided journeys cover chapter/news, ride planning and RSVPs, messaging,
+  simulated rider positions, a Guardian help scenario, community sections/polls
+  and a sample member card. Reset restores the fictional chapter.
+- A stateful in-process transport supplies sample records. The demo rejects a
+  live-service origin, uses no real location or microphone, and requires no
+  invitation, Cloudflare or VM connection. Calendar saving is a preview.
+- A spoken briefing demonstrates on-device audio. Live intercom and the CarPlay
+  companion remain in the connected build and still need the requested two-phone,
+  headset and head-unit acceptance trials. The demo makes no live-call claim.
+- The dedicated Demo configurations have a separate bundle identifier and omit
+  Siri/CarPlay/background entitlements. No backend, DNS or CMS changes were made
+  for this milestone. Broader membership/commerce/welfare work remains later.
+- See `product-demo.md` for presentation steps and validation. This milestone
+  delivers the demo product; it does not mark the consultation platform complete.
+
 ## Community sections — native 0.7.0
 
 - Added optional, named Community Sections to Comms with explicit open joining, approval requests or invitation acceptance. No default Ladies/Family/Associate section or eligibility policy is inferred.

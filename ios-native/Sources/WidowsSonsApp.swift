@@ -6,7 +6,7 @@ struct WidowsSonsApp: App {
   var body: some Scene {
     WindowGroup {
       if let store = AppRuntime.shared.store {
-        NativeAppRoot(store: store)
+        NativeAppRoot(store: store).id(AppRuntime.shared.instanceID)
       } else {
         ContentUnavailableView(
           "Chapter connection unavailable", systemImage: "network.slash",
@@ -23,6 +23,7 @@ struct NativeAppRoot: View {
   init(store: ChapterStore) { self.store = store }
   var body: some View {
     ChapterShell(store: store)
+      .environment(\.isDemoChapter, store.isDemo)
       .preferredColorScheme(.dark).tint(Heritage.brass)
       .onContinueUserActivity("INStartCallIntent") { CommunicationAppDelegate.continueCall($0) }
       .task(id: "\(scenePhase)-\(VehicleConnection.shared.connected)") {
@@ -78,6 +79,10 @@ struct ChapterShell: View {
   let store: ChapterStore
   @State private var selection = ChapterTab.chapter
   @State private var path: [ChapterRoute] = []
+  @State private var showingDemoTour = false
+  @State private var resettingDemo = false
+  @State private var pendingDemoStep: DemoTourStep?
+  @State private var demoNavigationID = UUID()
 
   private var tabs: [ChapterTab] {
     guard let features = store.feed?.chapter.features else { return ChapterTab.allCases }
@@ -93,109 +98,189 @@ struct ChapterShell: View {
   }
 
   var body: some View {
-    NavigationStack(path: $path) {
-      VStack(spacing: 0) {
-        ChapterHeader(name: store.feed?.chapter.displayName ?? "Widows Sons L&R") {
-          if let page = store.feed?.pages.first(where: { $0.slug == "about" }) {
-            path.append(.page(page))
-          }
-        }
-        if store.isLoading { ProgressView().tint(Heritage.brass).padding(.bottom, 8) }
-        if let community = store.community, community.isVerified,
-          let alert = community.duty?.alerts.first
-        {
-          NavigationLink(
-            value: ChapterRoute.rideOperations(
-              eventID: alert.eventID,
-              title: store.feed?.events.first { $0.id == alert.eventID }?.title
-                ?? "Ride Guardian requests", initialTab: .requests)
-          ) {
-            Label(
-              alert.kind == "sos" ? "SOS request · open ride log" : "Ride check-in / help request",
-              systemImage: "exclamationmark.bubble"
-            )
-            .font(.subheadline.weight(.semibold)).foregroundStyle(
-              alert.kind == "sos" ? .red : Heritage.brass
-            )
-            .frame(maxWidth: .infinity, minHeight: 48).padding(.horizontal, 20).background(
-              Heritage.panel)
-          }.buttonStyle(.plain).accessibilityIdentifier("guardian.alertBanner")
-        }
-        if store.isReadingSavedContent, let date = store.feed?.updatedAt {
-          HStack {
-            Image(systemName: "wifi.slash").accessibilityHidden(true)
-            Text("Saved reading · \(date.formatted(date: .abbreviated, time: .shortened))")
-          }.font(.caption).foregroundStyle(Heritage.brass)
-            .frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 24).padding(
-              .vertical, 10
-            ).background(Heritage.panel)
-        }
-        if store.feed == nil, let error = store.feedError {
-          ConnectionNotice(message: error) { Task { await store.refresh() } }.padding(24)
-        }
-        Group {
-          switch selection {
-          case .chapter: ChapterHome(store: store, selection: $selection)
-          case .rides: RidesScreen(store: store)
-          case .news: NewsScreen(store: store)
-          case .member: MemberScreen(store: store)
-          case .comms:
-            if let community = store.community {
-              CommunicationsScreen(community: community) { selection = .member }
+    VStack(spacing: 0) {
+      if store.isDemo {
+        DemoControlBar(tour: { showingDemoTour = true }, reset: { resettingDemo = true })
+      }
+      NavigationStack(path: $path) {
+        VStack(spacing: 0) {
+          ChapterHeader(name: store.feed?.chapter.displayName ?? "Widows Sons L&R") {
+            if let page = store.feed?.pages.first(where: { $0.slug == "about" }) {
+              path.append(.page(page))
             }
           }
-        }.frame(maxHeight: .infinity)
-      }
-      .background(Heritage.ink)
-      .toolbar(.hidden, for: .navigationBar)
-      .safeAreaInset(edge: .bottom, spacing: 0) {
-        ChapterTabBar(tabs: tabs, selection: $selection)
-      }
-      .navigationDestination(for: ChapterRoute.self) { route in
-        switch route {
-        case .article(let article): ArticleScreen(article: article)
-        case .event(let event): EventScreen(event: event, store: store)
-        case .page(let page):
-          ReadingScreen(
-            title: page.title, eyebrow: "Leicestershire & Rutland", bodyText: page.body,
-            website: page.url)
-        case .privacy: PrivacyScreen()
-        case .licences: LicencesScreen()
-        case .conversation(let conversation):
-          if let community = store.community {
-            ConversationScreen(conversation: conversation, community: community)
+          if store.isLoading { ProgressView().tint(Heritage.brass).padding(.bottom, 8) }
+          if let community = store.community, community.isVerified,
+            let alert = community.duty?.alerts.first
+          {
+            NavigationLink(
+              value: ChapterRoute.rideOperations(
+                eventID: alert.eventID,
+                title: store.feed?.events.first { $0.id == alert.eventID }?.title
+                  ?? "Ride Guardian requests", initialTab: .requests)
+            ) {
+              Label(
+                alert.kind == "sos"
+                  ? "SOS request · open ride log" : "Ride check-in / help request",
+                systemImage: "exclamationmark.bubble"
+              )
+              .font(.subheadline.weight(.semibold)).foregroundStyle(
+                alert.kind == "sos" ? .red : Heritage.brass
+              )
+              .frame(maxWidth: .infinity, minHeight: 48).padding(.horizontal, 20).background(
+                Heritage.panel)
+            }.buttonStyle(.plain).accessibilityIdentifier("guardian.alertBanner")
           }
-        case .clubSections:
-          if let community = store.community { ClubhouseDirectoryScreen(community: community) }
-        case .clubSection(let id):
-          if let community = store.community { ClubSectionScreen(id: id, community: community) }
-        case .clubPost(let sectionID, let postID):
-          if let community = store.community {
-            ClubPostScreen(sectionID: sectionID, postID: postID, community: community)
+          if store.isReadingSavedContent, let date = store.feed?.updatedAt {
+            HStack {
+              Image(systemName: "wifi.slash").accessibilityHidden(true)
+              Text("Saved reading · \(date.formatted(date: .abbreviated, time: .shortened))")
+            }.font(.caption).foregroundStyle(Heritage.brass)
+              .frame(maxWidth: .infinity, alignment: .leading).padding(.horizontal, 24).padding(
+                .vertical, 10
+              ).background(Heritage.panel)
           }
-        case .clubModeration(let id):
-          if let community = store.community { ClubModerationScreen(id: id, community: community) }
-        case .liveRide:
-          if let community = store.community { LiveRideScreen(community: community) }
-        case .rideOperations(let eventID, let title, let initialTab):
-          if let community = store.community {
-            RideOperationsScreen(
-              eventID: eventID, title: title, community: community, initialTab: initialTab)
+          if store.feed == nil, let error = store.feedError {
+            ConnectionNotice(message: error) { Task { await store.refresh() } }.padding(24)
+          }
+          Group {
+            switch selection {
+            case .chapter: ChapterHome(store: store, selection: $selection)
+            case .rides: RidesScreen(store: store)
+            case .news: NewsScreen(store: store)
+            case .member: MemberScreen(store: store)
+            case .comms:
+              if let community = store.community {
+                CommunicationsScreen(community: community) { selection = .member }
+              }
+            }
+          }.frame(maxHeight: .infinity)
+        }
+        .background(Heritage.ink)
+        .toolbar(.hidden, for: .navigationBar)
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+          ChapterTabBar(tabs: tabs, selection: $selection)
+        }
+        .navigationDestination(for: ChapterRoute.self) { route in
+          switch route {
+          case .article(let article): ArticleScreen(article: article)
+          case .event(let event): EventScreen(event: event, store: store)
+          case .page(let page):
+            ReadingScreen(
+              title: page.title, eyebrow: "Leicestershire & Rutland", bodyText: page.body,
+              website: page.url)
+          case .privacy: PrivacyScreen()
+          case .licences: LicencesScreen()
+          case .conversation(let conversation):
+            if let community = store.community {
+              ConversationScreen(conversation: conversation, community: community)
+            }
+          case .clubSections:
+            if let community = store.community { ClubhouseDirectoryScreen(community: community) }
+          case .clubSection(let id):
+            if let community = store.community { ClubSectionScreen(id: id, community: community) }
+          case .clubPost(let sectionID, let postID):
+            if let community = store.community {
+              ClubPostScreen(sectionID: sectionID, postID: postID, community: community)
+            }
+          case .clubModeration(let id):
+            if let community = store.community {
+              ClubModerationScreen(id: id, community: community)
+            }
+          case .liveRide:
+            if let community = store.community { LiveRideScreen(community: community) }
+          case .rideOperations(let eventID, let title, let initialTab):
+            if let community = store.community {
+              RideOperationsScreen(
+                eventID: eventID, title: title, community: community, initialTab: initialTab)
+            }
           }
         }
-      }
-      .onChange(of: tabs) { _, updated in
-        if !updated.contains(selection) { selection = .chapter }
-      }
-      .task(id: store.community?.isVerified) {
-        guard let community = store.community, community.isVerified else { return }
-        while !Task.isCancelled, community.isVerified {
-          await community.refreshDuty()
-          do { try await Task.sleep(for: .seconds(10)) } catch { return }
+        .onChange(of: tabs) { _, updated in
+          if !updated.contains(selection) { selection = .chapter }
         }
+        .task(id: store.community?.isVerified) {
+          guard let community = store.community, community.isVerified else { return }
+          while !Task.isCancelled, community.isVerified {
+            await community.refreshDuty()
+            do { try await Task.sleep(for: .seconds(10)) } catch { return }
+          }
+        }
+      }.id(demoNavigationID)
+    }
+    .sheet(
+      isPresented: $showingDemoTour,
+      onDismiss: {
+        guard let step = pendingDemoStep else { return }
+        pendingDemoStep = nil
+        openDemo(step)
+      }
+    ) {
+      DemoTourSheet { step in
+        pendingDemoStep = step
+        showingDemoTour = false
       }
     }
+    .confirmationDialog(
+      "Reset the sample chapter?", isPresented: $resettingDemo, titleVisibility: .visible
+    ) {
+      Button("Reset demo") { Task { await AppRuntime.shared.resetDemo() } }
+    } message: {
+      Text(
+        "This clears only this demo’s sample changes and starts the walkthrough again. No live chapter records are used."
+      )
+    }
     .background(Heritage.ink)
+  }
+  private func openDemo(_ step: DemoTourStep) {
+    Task {
+      guard let community = store.community else { return }
+      if !community.isVerified { await store.activate(code: DemoChapter.invitation) }
+      var destination: [ChapterRoute] = []
+      switch step {
+      case .chapter: selection = .chapter
+      case .ride:
+        selection = .rides
+        destination = [.event(DemoChapter.event())]
+      case .member: selection = .member
+      case .messages:
+        selection = .comms
+        await community.refreshConversations()
+        if let room = community.conversations.first(where: { $0.id == DemoChapter.conversation }) {
+          destination = [.conversation(room)]
+        }
+      case .tracking:
+        selection = .rides
+        if community.activeRide == nil {
+          _ = await store.respond(to: DemoChapter.event(), with: .going)
+          await community.join(event: DemoChapter.event())
+        }
+        destination = [.liveRide]
+      case .guardians:
+        selection = .rides
+        if community.activeRide == nil {
+          _ = await store.respond(to: DemoChapter.event(), with: .going)
+          await community.join(event: DemoChapter.event())
+        }
+        _ = try? await community.request(path: "demo/scenario/help", method: "POST")
+        await community.refreshDuty()
+        destination = [
+          .rideOperations(
+            eventID: DemoChapter.eventID, title: DemoChapter.eventTitle, initialTab: .requests)
+        ]
+      case .sections:
+        selection = .comms
+        destination = [.clubSections, .clubSection(DemoChapter.section)]
+      }
+      // Each tour jump starts a fresh stack after the sheet has fully dismissed.
+      // The shared stores retain the presenter's sample changes between journeys.
+      var transaction = Transaction()
+      transaction.disablesAnimations = true
+      withTransaction(transaction) {
+        path = destination
+        demoNavigationID = UUID()
+      }
+    }
   }
 }
 

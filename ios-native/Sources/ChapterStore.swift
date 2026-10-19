@@ -3,6 +3,7 @@ import Observation
 
 @MainActor @Observable
 final class ChapterStore {
+  var isDemo: Bool { community?.isDemo == true }
   private(set) var feed: ChapterFeed?
   private(set) var member: MemberProfile?
   private(set) var isSignedIn = false

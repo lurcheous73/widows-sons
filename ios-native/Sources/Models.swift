@@ -131,9 +131,13 @@ enum APICoding {
 struct AppConfiguration: Equatable, Sendable {
   let baseURL: URL
   let chapterSlug: String
+  let isDemo: Bool
   var storageNamespace: String { "\(baseURL.absoluteString).\(chapterSlug)" }
 
-  init(baseURL: URL, chapterSlug: String = "lr", allowsDebugLoopback: Bool = false) throws {
+  init(
+    baseURL: URL, chapterSlug: String = "lr", allowsDebugLoopback: Bool = false,
+    isDemo: Bool = false
+  ) throws {
     let isLoopback = ["localhost", "127.0.0.1", "::1"].contains(baseURL.host ?? "")
     guard baseURL.host != nil, baseURL.user == nil, baseURL.password == nil,
       baseURL.query == nil, baseURL.fragment == nil,
@@ -143,6 +147,10 @@ struct AppConfiguration: Equatable, Sendable {
     else {
       throw APIError.configuration
     }
+    guard !isDemo || baseURL.absoluteString == "https://demo.widows-sons.invalid" else {
+      throw APIError.configuration
+    }
+    self.isDemo = isDemo
     self.baseURL = baseURL
     self.chapterSlug = chapterSlug
   }
@@ -152,10 +160,11 @@ struct AppConfiguration: Equatable, Sendable {
       Bundle.main.object(forInfoDictionaryKey: "WidowsSonsBaseURL") as? String
       ?? "https://wsmba.the-grange.uk"
     guard let url = URL(string: raw) else { throw APIError.configuration }
+    let isDemo = Bundle.main.object(forInfoDictionaryKey: "WidowsSonsDemoMode") as? Bool ?? false
     #if DEBUG
-      return try AppConfiguration(baseURL: url, allowsDebugLoopback: true)
+      return try AppConfiguration(baseURL: url, allowsDebugLoopback: true, isDemo: isDemo)
     #else
-      return try AppConfiguration(baseURL: url)
+      return try AppConfiguration(baseURL: url, isDemo: isDemo)
     #endif
   }
 }

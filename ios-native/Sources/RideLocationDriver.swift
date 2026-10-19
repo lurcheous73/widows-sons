@@ -10,11 +10,16 @@ final class RideLocationDriver: NSObject, CLLocationManagerDelegate {
   private(set) var isAwaitingPermission = false
   private(set) var error: String?
   @ObservationIgnored var onFix: (@MainActor (LocationFix) -> Void)?
-  @ObservationIgnored private let manager = CLLocationManager()
+  @ObservationIgnored private let manager: CLLocationManager?
+  @ObservationIgnored private var demoTask: Task<Void, Never>?
   @ObservationIgnored private var wantsSharing = false
 
-  override init() {
+  override convenience init() { self.init(isDemo: false) }
+
+  init(isDemo: Bool) {
+    manager = isDemo ? nil : CLLocationManager()
     super.init()
+    guard let manager else { return }
     manager.delegate = self
     manager.desiredAccuracy = kCLLocationAccuracyBest
     manager.distanceFilter = kCLDistanceFilterNone
@@ -31,6 +36,20 @@ final class RideLocationDriver: NSObject, CLLocationManagerDelegate {
 
   private func continueStarting() {
     guard wantsSharing else { return }
+    guard let manager else {
+      isSharing = true
+      isAwaitingPermission = false
+      demoTask?.cancel()
+      demoTask = Task { [weak self] in
+        while !Task.isCancelled {
+          guard let self, self.wantsSharing else { return }
+          self.onFix?(
+            LocationFix(latitude: 52.6369, longitude: -1.1398, accuracy: 8, capturedAt: .now))
+          do { try await Task.sleep(for: .seconds(5)) } catch { return }
+        }
+      }
+      return
+    }
     switch manager.authorizationStatus {
     case .notDetermined:
       isAwaitingPermission = true
@@ -54,8 +73,10 @@ final class RideLocationDriver: NSObject, CLLocationManagerDelegate {
 
   func stop() {
     wantsSharing = false
-    manager.stopUpdatingLocation()
-    manager.allowsBackgroundLocationUpdates = false
+    demoTask?.cancel()
+    demoTask = nil
+    manager?.stopUpdatingLocation()
+    manager?.allowsBackgroundLocationUpdates = false
     isSharing = false
     isAwaitingPermission = false
   }

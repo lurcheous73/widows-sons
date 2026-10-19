@@ -265,11 +265,14 @@ enum ApprovedWebsite {
 }
 
 struct DevelopmentFooter: View {
+  @Environment(\.isDemoChapter) private var isDemo
   var body: some View {
     #if DEBUG
-      Text("WIDOWS SONS  /  SWIFTUI DEVELOPMENT")
-        .font(.caption2).tracking(1.4).foregroundStyle(Heritage.muted).frame(maxWidth: .infinity)
-        .padding(.vertical, 8)
+      if !isDemo {
+        Text("WIDOWS SONS  /  SWIFTUI DEVELOPMENT")
+          .font(.caption2).tracking(1.4).foregroundStyle(Heritage.muted).frame(maxWidth: .infinity)
+          .padding(.vertical, 8)
+      }
     #endif
   }
 }

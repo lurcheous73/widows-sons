@@ -14,7 +14,9 @@ struct MemberScreen: View {
       if let member = store.member {
         MembershipCard(member: member).privacySensitive()
         Text(
-          "Verified online \(member.verifiedAt.formatted(date: .abbreviated, time: .shortened)). This card shows your chapter record; it is not a payment receipt."
+          store.isDemo
+            ? "Sample member record. Demo changes stay on this device."
+            : "Verified online \(member.verifiedAt.formatted(date: .abbreviated, time: .shortened)). This card shows your chapter record; it is not a payment receipt."
         )
         .font(.caption).foregroundStyle(Heritage.muted)
         ChapterCard {
@@ -36,8 +38,16 @@ struct MemberScreen: View {
           .footnote
         ).foregroundStyle(Heritage.muted)
       } else {
-        InvitationForm(store: store)
-        if let url = ApprovedWebsite.link(URL(string: "https://wsmba.the-grange.uk/contact/")) {
+        if store.isDemo {
+          Button("Enter demo membership") {
+            Task { await store.activate(code: DemoChapter.invitation) }
+          }.buttonStyle(BrassButtonStyle()).accessibilityIdentifier("demo.enter")
+        } else {
+          InvitationForm(store: store)
+        }
+        if !store.isDemo,
+          let url = ApprovedWebsite.link(URL(string: "https://wsmba.the-grange.uk/contact/"))
+        {
           Link(destination: url) {
             Label("Speak to the chapter", systemImage: "arrow.up.right.square")
           }
@@ -52,7 +62,9 @@ struct MemberScreen: View {
         Button {
           Task { signOutNotice = await store.signOut() }
         } label: {
-          Label("Sign out of this device", systemImage: "rectangle.portrait.and.arrow.right")
+          Label(
+            store.isDemo ? "Preview guest mode" : "Sign out of this device",
+            systemImage: "rectangle.portrait.and.arrow.right")
         }
         .buttonStyle(BrassButtonStyle(outlined: true)).disabled(store.isBusy)
         if let signOutNotice { Text(signOutNotice).font(.footnote).foregroundStyle(.red) }
@@ -181,7 +193,9 @@ struct EventScreen: View {
       if !event.location.isEmpty {
         Label(event.location, systemImage: "mappin.and.ellipse").foregroundStyle(Heritage.muted)
       }
-      Button("Add to my calendar") { calendarPresented = true }.buttonStyle(
+      Button(store.isDemo ? "Preview calendar entry" : "Add to my calendar") {
+        calendarPresented = true
+      }.buttonStyle(
         BrassButtonStyle(outlined: true)
       )
       .accessibilityIdentifier("ride.calendar")
@@ -256,7 +270,11 @@ struct EventScreen: View {
       }
     }.navigationTitle("Ride details").navigationBarTitleDisplayMode(.inline)
       .sheet(isPresented: $calendarPresented) {
-        RideCalendarEditor(event: event) { calendarPresented = false }
+        if store.isDemo {
+          DemoCalendarPreview(event: event)
+        } else {
+          RideCalendarEditor(event: event) { calendarPresented = false }
+        }
       }
       .navigationDestination(item: $conversation) { value in
         if let community = store.community {
@@ -284,10 +302,13 @@ struct EventScreen: View {
 }
 
 struct PrivacyScreen: View {
+  @Environment(\.isDemoChapter) private var isDemo
   var body: some View {
     ReadingScreen(
       title: "Your chapter. Your privacy.", eyebrow: "App information",
-      bodyText: """
+      bodyText: isDemo
+        ? "This is a self-contained product demonstration. All members, messages, positions, polls and requests are fictional. Sample changes are kept in memory and reset when the app restarts or you choose Reset demo. No real GPS or microphone is captured, no emergency request or notification is sent, and the live chapter service is not contacted. The spoken briefing uses on-device speech. Map backgrounds may use Apple’s map service. The connected app has separate membership and privacy controls."
+        : """
         Public news and ride details are saved on this device for offline reading. Saved information can be out of date; pull down to refresh it.
 
         Your sign-in secret is kept in Apple Keychain on this device only. After the first unlock following a restart, Siri and CarPlay can use it while the phone is locked. Your member card and RSVP record are checked with the chapter server and are not stored in the public offline cache.
@@ -310,7 +331,7 @@ struct PrivacyScreen: View {
 
         Contact the chapter to correct your details, request deletion or discuss record retention. A server-verified sign-out revokes this device’s session.
 
-        Native SwiftUI review build 0.7.0. This build has not been released through the App Store.
+        Native SwiftUI review build 0.8.0. This build has not been released through the App Store.
         """, website: URL(string: "https://wsmba.the-grange.uk/contact/"))
   }
 }

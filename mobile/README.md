@@ -1,5 +1,9 @@
 # Widows Sons mobile — first review build
 
+**Superseded for iOS:** the owner requested native SwiftUI on 19 October 2026.
+The active iOS project is now [`../ios-native/`](../ios-native/README.md). This
+Flutter prototype and its build instructions are retained as a historical reference.
+
 Flutter 3.47.7 / Dart 3.13.5, version **0.3.0+1**. Built and exercised on an iOS
 27 simulator using Xcode 27. The iOS deployment target is 15.0. The shared Dart
 client and Android project are present; Android device validation is still pending.

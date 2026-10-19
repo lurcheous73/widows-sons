@@ -1,5 +1,13 @@
 # Development status — 19 October 2026
 
+## Active native iOS build
+- Following the owner's request, the active iOS client is now Swift 6 / SwiftUI in `ios-native/`, using the proposed Heritage & Road design.
+- Native URLSession networking, structured refresh tasks, device-only Apple Keychain storage, file-based public caching and online member verification use the existing VM20000 API.
+- The MIT-licensed KeychainAccess package is pinned to version 4.2.2 and revision `84e546727d66f1adc5439debad16270d0fdd04e7`; the full licence is bundled and visible in the app. XcodeGen generates the checked-in native Xcode project.
+- All 20 native tests passed, including real Keychain persistence, tenant checks, session expiry/revocation, RSVP ownership in client state, public-cache separation, stale-response handling and bundled licence checks. Debug simulator and unsigned Release iPhone hardware builds compiled successfully.
+- The running native app was checked against VM20000 for published article reading, invitation activation, membership verification after restart and RSVP saving using a disposable QA identity. Native offline checks confirmed that public content remains readable and member cards require an online check. The bundled open-source acknowledgement was also verified in the app.
+- The earlier Flutter app remains in `mobile/` as a reference. Android is a future platform decision following the native iOS switch.
+
 ## Running on the dedicated Canada development VM
 - Home CT1000 source and the PostgreSQL chapter database have been migrated to VM20000 (`can-widows-sons-dev`), with 8 vCPU, 16 GiB RAM and a 500 GiB disk.
 - The original FastAPI read-only prototype and PostgreSQL public chapter feeds run under a dedicated service account.

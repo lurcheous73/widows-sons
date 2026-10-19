@@ -1,0 +1,76 @@
+name: WidowsSons
+options:
+  minimumXcodeGenVersion: 2.46.0
+  deploymentTarget:
+    iOS: '17.0'
+  createIntermediateGroups: true
+packages:
+  KeychainAccess:
+    url: https://github.com/kishikawakatsumi/KeychainAccess.git
+    exactVersion: 4.2.2
+settings:
+  base:
+    SWIFT_VERSION: '6.0'
+    SWIFT_STRICT_CONCURRENCY: complete
+    SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
+    SWIFT_APPROACHABLE_CONCURRENCY: NO
+    IPHONEOS_DEPLOYMENT_TARGET: '17.0'
+    MARKETING_VERSION: 0.4.0
+    CURRENT_PROJECT_VERSION: 1
+    TARGETED_DEVICE_FAMILY: '1,2'
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    GENERATE_INFOPLIST_FILE: NO
+  configs:
+    Debug:
+      WIDOWS_SONS_BASE_URL: http://localhost:19820
+    Release:
+      WIDOWS_SONS_BASE_URL: https://wsmba.the-grange.uk
+targets:
+  WidowsSons:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+      - path: Resources
+        buildPhase: resources
+      - path: ThirdPartyNotices.txt
+        buildPhase: resources
+    dependencies:
+      - package: KeychainAccess
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: uk.thegrange.widowsSons
+        PRODUCT_NAME: WidowsSons
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_FILE: Configuration/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Configuration/WidowsSons.entitlements
+      configs:
+        Debug:
+          INFOPLIST_FILE: Configuration/Info-Debug.plist
+  WidowsSonsTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests
+    dependencies:
+      - target: WidowsSons
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: uk.thegrange.widowsSons.tests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/WidowsSons.app/WidowsSons
+schemes:
+  WidowsSons:
+    build:
+      targets:
+        WidowsSons: all
+        WidowsSonsTests: [test]
+    test:
+      config: Debug
+      targets:
+        - WidowsSonsTests
+    run:
+      config: Debug
+    archive:
+      config: Release

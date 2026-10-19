@@ -6,7 +6,9 @@ Every member, ride, event, message and document must contain an organisation_id.
 Group-level admins cannot manage another group. Cross-organisation access must be explicit and audited.
 
 ## Planned services
-- Flutter mobile apps on iOS and Android.
+- Native Swift 6 / SwiftUI iOS app in `ios-native/`, using the existing shared API.
+- Android platform choice is pending following the owner's native iOS decision.
+  The earlier Flutter implementation remains as a reference in `mobile/`.
 - FastAPI backend, PostgreSQL and a job queue.
 - Responsive administrator portal with MFA and fine-grained RBAC.
 - Push: APNs / FCM; messaging via proven E2EE protocol; calls via Jitsi/WebRTC.

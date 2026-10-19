@@ -318,19 +318,18 @@ struct ClubSectionEditor: View {
         }
         if let error { Section { Text(error).foregroundStyle(Heritage.brass) } }
       }.navigationTitle(original == nil ? "New section" : "Section settings")
-        .toolbar {
-          ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
-          ToolbarItem(placement: .confirmationAction) {
-            Button(busy ? "Saving…" : "Save") {
-              if original != nil && (policy != original?.joinPolicy || status != original?.state) {
-                confirmChange = true
-              } else {
-                Task { await save() }
-              }
-            }.disabled(
-              busy || ClubInput.text(title, limit: 100) == nil
-                || ClubInput.text(description, limit: 2000, allowEmpty: true) == nil
-            ).accessibilityIdentifier("section.edit.save")
+        .safeAreaInset(edge: .bottom) {
+          ClubEditorActions(
+            title: busy ? "Saving…" : "Save",
+            enabled: !busy && ClubInput.text(title, limit: 100) != nil
+              && ClubInput.text(description, limit: 2000, allowEmpty: true) != nil,
+            busy: busy, identifier: "section.edit.save", cancel: { dismiss() }
+          ) {
+            if original != nil && (policy != original?.joinPolicy || status != original?.state) {
+              confirmChange = true
+            } else {
+              Task { await save() }
+            }
           }
         }
         .confirmationDialog(
@@ -421,14 +420,12 @@ struct ClubPostComposer: View {
         }
         if let error = board.error { Section { Text(error).foregroundStyle(Heritage.brass) } }
       }.navigationTitle("New chapter post")
-        .toolbar {
-          ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
-          ToolbarItem(placement: .confirmationAction) {
-            Button(board.busy ? "Sending…" : "Publish") {
-              Task { if await board.publish(payload) { dismiss() } }
-            }
-            .disabled(board.busy || !payload.isValid).accessibilityIdentifier(
-              "section.post.publish")
+        .safeAreaInset(edge: .bottom) {
+          ClubEditorActions(
+            title: board.busy ? "Sending…" : "Publish", enabled: !board.busy && payload.isValid,
+            busy: board.busy, identifier: "section.post.publish", cancel: { dismiss() }
+          ) {
+            Task { if await board.publish(payload) { dismiss() } }
           }
         }
         .onChange(of: scenePhase) { _, phase in if phase != .active { dismiss() } }
@@ -442,5 +439,22 @@ extension View {
     self.navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
       .toolbarBackground(Heritage.ink, for: .navigationBar).toolbarBackground(
         .visible, for: .navigationBar)
+  }
+}
+
+struct ClubEditorActions: View {
+  let title: String
+  let enabled: Bool
+  let busy: Bool
+  let identifier: String
+  let cancel: () -> Void
+  let save: () -> Void
+  var body: some View {
+    HStack(spacing: 16) {
+      Button("Cancel", action: cancel).buttonStyle(BrassButtonStyle(outlined: true)).disabled(busy)
+      Spacer(minLength: 0)
+      Button(title, action: save).buttonStyle(BrassButtonStyle()).disabled(!enabled)
+        .accessibilityIdentifier(identifier)
+    }.padding(.horizontal, 20).padding(.vertical, 12).background(Heritage.ink)
   }
 }

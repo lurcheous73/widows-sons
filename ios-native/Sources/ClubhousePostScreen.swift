@@ -247,21 +247,21 @@ struct ClubReasonSheet: View {
         }
         if let error { Section { Text(error).foregroundStyle(Heritage.brass) } }
       }.navigationTitle(title)
-        .toolbar {
-          ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
-          ToolbarItem(placement: .confirmationAction) {
-            Button(busy ? "Saving…" : "Save") {
-              busy = true
-              Task {
-                defer { busy = false }
-                if await submit(reason) {
-                  dismiss()
-                } else {
-                  error =
-                    failure() ?? "The chapter could not confirm this action. Please try again."
-                }
+        .safeAreaInset(edge: .bottom) {
+          ClubEditorActions(
+            title: busy ? "Saving…" : "Save",
+            enabled: !busy && ClubInput.text(reason, limit: 500).map { $0.count >= 5 } == true,
+            busy: busy, identifier: "section.reason.save", cancel: { dismiss() }
+          ) {
+            busy = true
+            Task {
+              defer { busy = false }
+              if await submit(reason) {
+                dismiss()
+              } else {
+                error = failure() ?? "The chapter could not confirm this action. Please try again."
               }
-            }.disabled(busy || ClubInput.text(reason, limit: 500).map { $0.count >= 5 } != true)
+            }
           }
         }.onChange(of: scenePhase) { _, phase in if phase != .active { dismiss() } }
     }.preferredColorScheme(.dark).tint(Heritage.brass)

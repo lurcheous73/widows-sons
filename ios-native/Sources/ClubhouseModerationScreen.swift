@@ -198,7 +198,10 @@ struct ClubInvitePicker: View {
           if people.isEmpty { Text("No matching members available to invite.") }
         }
       }.navigationTitle("Invite to section")
-        .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Done") { dismiss() } } }
+        .safeAreaInset(edge: .bottom) {
+          Button("Done") { dismiss() }.buttonStyle(BrassButtonStyle(outlined: true)).padding(16)
+            .frame(maxWidth: .infinity).background(Heritage.ink)
+        }
         .task { await board.community.refreshPeople() }
         .onChange(of: scenePhase) { _, phase in if phase != .active { dismiss() } }
         .onChange(of: board.community.isVerified) { _, verified in if !verified { dismiss() } }

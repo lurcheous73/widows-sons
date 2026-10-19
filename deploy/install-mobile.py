@@ -26,6 +26,7 @@ def main():
         run('useradd', '--system', '--home-dir', '/var/lib/widowsapp', '--create-home', '--shell', '/usr/sbin/nologin', 'widowsapp')
     run('runuser', '-u', 'postgres', '--', 'psql', '-v', 'ON_ERROR_STOP=1', '-d', 'widowssons', '-f', str(root / 'backend/mobile_schema.sql'))
     run('runuser', '-u', 'postgres', '--', 'psql', '-v', 'ON_ERROR_STOP=1', '-d', 'widowssons', '-f', str(root / 'backend/community_schema.sql'))
+    run('runuser', '-u', 'postgres', '--', 'psql', '-v', 'ON_ERROR_STOP=1', '-d', 'widowssons', '-f', str(root / 'backend/ride_schema.sql'))
     grants = """
 DO $$ BEGIN IF NOT EXISTS(SELECT 1 FROM pg_roles WHERE rolname='widowsapp')
  THEN CREATE ROLE widowsapp LOGIN; END IF; END $$;
@@ -42,6 +43,10 @@ GRANT USAGE ON SEQUENCE audit_events_id_seq TO widowsapp;
 GRANT SELECT,INSERT,UPDATE ON conversations,conversation_messages,conversation_reads,member_blocks,message_reports,live_riders,voice_grants TO widowsapp;
 GRANT DELETE ON member_blocks,live_riders,voice_grants TO widowsapp;
 GRANT USAGE ON SEQUENCE conversation_messages_id_seq TO widowsapp;
+GRANT SELECT ON ride_managers,role_grants TO widowsapp;
+GRANT SELECT,INSERT,UPDATE ON ride_plans,ride_assignments,ride_participation,ride_incidents,ride_incident_receipts TO widowsapp;
+GRANT SELECT,INSERT ON ride_activity TO widowsapp;
+GRANT USAGE ON SEQUENCE ride_activity_id_seq TO widowsapp;
 """
     run('runuser', '-u', 'postgres', '--', 'psql', '-v', 'ON_ERROR_STOP=1', '-d', 'widowssons', input=grants)
     run('/srv/widows-sons/venv/bin/pip', 'install', '-r', str(root / 'backend/requirements.txt'))

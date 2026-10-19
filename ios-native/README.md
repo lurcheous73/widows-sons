@@ -1,6 +1,6 @@
 # Widows Sons — native SwiftUI iOS app
 
-**Active iOS implementation: Swift 6 + SwiftUI.** Version 0.5.0, minimum iOS 17.
+**Active iOS implementation: Swift 6 + SwiftUI.** Version 0.6.0, minimum iOS 17.
 The owner requested native Swift on 19 October 2026. This supersedes the Flutter
 iOS prototype while retaining the same VM20000 API, database and WordPress CMS.
 The proposed Heritage & Road design supplies the charcoal, brass, off-white,
@@ -85,10 +85,41 @@ responses and chapter information. WordPress updates feed both website and app.
 No Swift UI is implemented as a web wrapper. The app now also includes member
 messaging, self-hosted voice intercom and opt-in live ride maps.
 
-Member/admin approval screens, renewals, deletion self-service, push notifications,
-message attachments, GPX/calendar features, payments, Ride Guardian escalation,
-SOS, music controls and confidential welfare services remain later milestones.
+Member/admin approval screens, renewals, deletion self-service, background push,
+message attachments, payments, external safety-contact escalation, owned-media
+transport controls and confidential welfare services remain later milestones.
 Physical helmet/cellular/locked-screen and battery trials remain acceptance work.
 Existing service/API
 operations and production requirements are in `../docs/mobile-build.md`.
 Android is a separate future platform decision following this native iOS switch.
+
+## Ride operations and CarPlay — 0.6.0
+
+The native app now includes per-event Guardian nominations/acceptance/handovers,
+briefings and stops, GPX route preview/import/export, a native Calendar editor,
+private help/SOS/check-in requests, independent Guardian receipts, resolution
+history, safe-arrival records, confirmed assistance and closure checks. See
+`../docs/ride-operations-build.md` for permissions and deployment.
+
+`RideRequestOutbox.swift` stores only pending requests, separately from public
+editorial caching, with protected backup-excluded files and stable retry IDs.
+Sign-out clears this queue; an unsent request over 15 minutes old must be reviewed
+and sent afresh. A server receipt never implies a Guardian response.
+
+The `WidowsSons-CarPlay` scheme adds `CarPlay-Debug`/`CarPlay-Release` with the
+communication entitlement. `CarPlaySceneDelegate.swift` uses system Intercom and
+Messages lists, with Siri reading/composing through `CommunicationIntents.swift`
+and permission-checked `SiriMessageService.swift`. Physical-phone audio uses
+`IntercomCallCoordinator.swift`/CallKit; Simulator uses the existing transport.
+The SDK supplies system voice ducking. Push-to-talk and a 30-second vehicle
+speech burst are explicit microphone actions.
+
+Apple must approve the communication category and the signing profile must carry
+that managed capability. No Apple request has been submitted. Custom CarPlay
+maps/turn-by-turn navigation are outside this communication-category build.
+`../docs/design-brief.md` is the completed current interface brief, including
+CarPlay constraints and the subsequent two-iPhone/head-unit acceptance matrix.
+
+The session Keychain item is device-only and accessible after first unlock since
+reboot for locked-phone Siri/CarPlay. The request queue requests equivalent file
+protection. Private message text and locations are never cached for Siri.

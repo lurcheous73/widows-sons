@@ -7,27 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CC72968547FF6E5DC6B5493 /* RideOperationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A3D452EBF9D95720E1CC0A /* RideOperationsStore.swift */; };
 		0E492E58222D9B2C46D80E74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E56976710776C570D77FCEF /* Assets.xcassets */; };
 		10E36D97192BF90114FBB526 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BAAD418DDFD6801FD60071 /* Fixtures.swift */; };
+		12D05C7688A3BA3C1C2B43DF /* RideOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8468742EF47403943CE0CDA /* RideOperationsTests.swift */; };
 		1A3088842175693329982A0C /* ThirdPartyNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = B5A045F657BE274C000FB51C /* ThirdPartyNotices.txt */; };
 		210F8CA4CFE3F67FDA1A8C2B /* CommunityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854209975A06ECB9A3F9FB2F /* CommunityModels.swift */; };
 		211FB0A5375D2E015B59846F /* LiveRideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9FFC71665E145FFCFBD1D /* LiveRideScreen.swift */; };
 		2B79E19DD26C067E109F82A4 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F629DDB21385CAE3BB9968 /* Storage.swift */; };
 		2F4AF5C3D722A955764A5FBD /* ChapterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC1C7A403F7A68FCB832B22 /* ChapterStore.swift */; };
 		359A95A4BAFD4E24EC26C380 /* MemberScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B355EE212E49E9D82581BEDF /* MemberScreens.swift */; };
+		3B744F3A6976EB8712E9485B /* RideRouteTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F0AC1430FD0573F6EDAC0A /* RideRouteTools.swift */; };
 		52A0D68252AECC6FF3838E2B /* CommunityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F58DBE826B0FA14079E1FB /* CommunityTests.swift */; };
 		67BC7E4C9B47945CCA09BCD5 /* ChapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADBD7B1A81792604424193E /* ChapterTests.swift */; };
+		67CB18BE78AF9D4E7EB7E35B /* AppRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7099E1A7C9B0685A5B61EB1 /* AppRuntime.swift */; };
 		6F3BC392F71CE7598E926AC4 /* LiveKit in Frameworks */ = {isa = PBXBuildFile; productRef = 36312BD2CE21F2F87D1AA224 /* LiveKit */; };
+		6FFB9044AF90BDC091564D69 /* SiriMessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420C4C73F847682B1BC3BBCB /* SiriMessageService.swift */; };
 		87D07F37AE64563AD6910D11 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F56590D34D4AEF7DF96A8F /* DesignSystem.swift */; };
+		95121714667A938517960190 /* RideOperationsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C86B6515CFE1A00FB2C176 /* RideOperationsScreen.swift */; };
+		95BD9F5E4C12269B233BAAF4 /* CarPlaySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA513E0B4538B91A8B96D678 /* CarPlaySceneDelegate.swift */; };
 		AD5DCE4E23938B7219293164 /* VoiceIntercom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE9A9ED0AC5EB628B5119A /* VoiceIntercom.swift */; };
 		BF217521D9A1AA5D4C64357A /* CommunicationsScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F22F7F061D474791DF489 /* CommunicationsScreens.swift */; };
 		C13F3E3C07CBD737E6D6D77B /* ChapterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB431CD4D3F157D02011EFD /* ChapterAPI.swift */; };
+		C4493BD50F4D179B67588C06 /* RideRequestOutbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543F0CF1CCFF7520498F8379 /* RideRequestOutbox.swift */; };
 		C55B49712A8B907FF9DF86BC /* ChatThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209D4D52F348ED862C6C829 /* ChatThread.swift */; };
 		CB73678F3F796C352FDC501B /* WidowsSonsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FD3977199179831DD1610 /* WidowsSonsApp.swift */; };
 		D174BBE51DB58CB5737708DE /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C52E0136F811CB6EB9663ED /* Models.swift */; };
+		D1A1461C5CD01CEB618F16BC /* CommunicationIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D46114706B0297ECF13F8D0 /* CommunicationIntents.swift */; };
 		D894FDD9EB7AB3F253D4BE18 /* RideLocationDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68FB3A3B58DF8A9BF0D2A9B /* RideLocationDriver.swift */; };
 		E08DBA0BE30B0348EA73DDD7 /* CommunityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C64302BCB9C69B9CCDF91 /* CommunityStore.swift */; };
+		E0DA02006A3E900A19063354 /* RideOperationsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44236585CC25146226BE0316 /* RideOperationsModels.swift */; };
 		E9050F1CFC9A5A813012EDA6 /* PublicScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F95A37718C3F72AF98D73B /* PublicScreens.swift */; };
+		F19E22FB579B0C598F85C50B /* IntercomCallCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2E78C6CE0AEB3AA297EB32 /* IntercomCallCoordinator.swift */; };
 		FB83C33D661A36A511462388 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 7853E9109382484F76E69793 /* KeychainAccess */; };
 /* End PBXBuildFile section */
 
@@ -47,15 +58,25 @@
 		0EB431CD4D3F157D02011EFD /* ChapterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterAPI.swift; sourceTree = "<group>"; };
 		116C64302BCB9C69B9CCDF91 /* CommunityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityStore.swift; sourceTree = "<group>"; };
 		3E56976710776C570D77FCEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		420C4C73F847682B1BC3BBCB /* SiriMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriMessageService.swift; sourceTree = "<group>"; };
+		44236585CC25146226BE0316 /* RideOperationsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideOperationsModels.swift; sourceTree = "<group>"; };
+		50C86B6515CFE1A00FB2C176 /* RideOperationsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideOperationsScreen.swift; sourceTree = "<group>"; };
+		543F0CF1CCFF7520498F8379 /* RideRequestOutbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequestOutbox.swift; sourceTree = "<group>"; };
 		5ADBD7B1A81792604424193E /* ChapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterTests.swift; sourceTree = "<group>"; };
+		5D46114706B0297ECF13F8D0 /* CommunicationIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationIntents.swift; sourceTree = "<group>"; };
 		600C50D2C5A239F3B96BD0F8 /* WidowsSons.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = WidowsSons.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63A3D452EBF9D95720E1CC0A /* RideOperationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideOperationsStore.swift; sourceTree = "<group>"; };
 		854209975A06ECB9A3F9FB2F /* CommunityModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityModels.swift; sourceTree = "<group>"; };
 		8C52E0136F811CB6EB9663ED /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		918ADFE113D2EF02EB7F11A4 /* WidowsSonsTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WidowsSonsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		98F0AC1430FD0573F6EDAC0A /* RideRouteTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRouteTools.swift; sourceTree = "<group>"; };
+		AA513E0B4538B91A8B96D678 /* CarPlaySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlaySceneDelegate.swift; sourceTree = "<group>"; };
 		B15F22F7F061D474791DF489 /* CommunicationsScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationsScreens.swift; sourceTree = "<group>"; };
 		B355EE212E49E9D82581BEDF /* MemberScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberScreens.swift; sourceTree = "<group>"; };
 		B5A045F657BE274C000FB51C /* ThirdPartyNotices.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ThirdPartyNotices.txt; sourceTree = "<group>"; };
+		B8468742EF47403943CE0CDA /* RideOperationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideOperationsTests.swift; sourceTree = "<group>"; };
 		BAEE9A9ED0AC5EB628B5119A /* VoiceIntercom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceIntercom.swift; sourceTree = "<group>"; };
+		BE2E78C6CE0AEB3AA297EB32 /* IntercomCallCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntercomCallCoordinator.swift; sourceTree = "<group>"; };
 		C68FB3A3B58DF8A9BF0D2A9B /* RideLocationDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideLocationDriver.swift; sourceTree = "<group>"; };
 		D1F95A37718C3F72AF98D73B /* PublicScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicScreens.swift; sourceTree = "<group>"; };
 		D3F629DDB21385CAE3BB9968 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -64,6 +85,7 @@
 		F0B9FFC71665E145FFCFBD1D /* LiveRideScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveRideScreen.swift; sourceTree = "<group>"; };
 		F2BAAD418DDFD6801FD60071 /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		F4F56590D34D4AEF7DF96A8F /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		F7099E1A7C9B0685A5B61EB1 /* AppRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRuntime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +107,7 @@
 				5ADBD7B1A81792604424193E /* ChapterTests.swift */,
 				04F58DBE826B0FA14079E1FB /* CommunityTests.swift */,
 				F2BAAD418DDFD6801FD60071 /* Fixtures.swift */,
+				B8468742EF47403943CE0CDA /* RideOperationsTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -112,18 +135,28 @@
 		9A801CB2C9211D395A94A4A7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F7099E1A7C9B0685A5B61EB1 /* AppRuntime.swift */,
+				AA513E0B4538B91A8B96D678 /* CarPlaySceneDelegate.swift */,
 				0EB431CD4D3F157D02011EFD /* ChapterAPI.swift */,
 				DAC1C7A403F7A68FCB832B22 /* ChapterStore.swift */,
 				E209D4D52F348ED862C6C829 /* ChatThread.swift */,
+				5D46114706B0297ECF13F8D0 /* CommunicationIntents.swift */,
 				B15F22F7F061D474791DF489 /* CommunicationsScreens.swift */,
 				854209975A06ECB9A3F9FB2F /* CommunityModels.swift */,
 				116C64302BCB9C69B9CCDF91 /* CommunityStore.swift */,
 				F4F56590D34D4AEF7DF96A8F /* DesignSystem.swift */,
+				BE2E78C6CE0AEB3AA297EB32 /* IntercomCallCoordinator.swift */,
 				F0B9FFC71665E145FFCFBD1D /* LiveRideScreen.swift */,
 				B355EE212E49E9D82581BEDF /* MemberScreens.swift */,
 				8C52E0136F811CB6EB9663ED /* Models.swift */,
 				D1F95A37718C3F72AF98D73B /* PublicScreens.swift */,
 				C68FB3A3B58DF8A9BF0D2A9B /* RideLocationDriver.swift */,
+				44236585CC25146226BE0316 /* RideOperationsModels.swift */,
+				50C86B6515CFE1A00FB2C176 /* RideOperationsScreen.swift */,
+				63A3D452EBF9D95720E1CC0A /* RideOperationsStore.swift */,
+				543F0CF1CCFF7520498F8379 /* RideRequestOutbox.swift */,
+				98F0AC1430FD0573F6EDAC0A /* RideRouteTools.swift */,
+				420C4C73F847682B1BC3BBCB /* SiriMessageService.swift */,
 				D3F629DDB21385CAE3BB9968 /* Storage.swift */,
 				BAEE9A9ED0AC5EB628B5119A /* VoiceIntercom.swift */,
 				0A3FD3977199179831DD1610 /* WidowsSonsApp.swift */,
@@ -242,6 +275,7 @@
 				67BC7E4C9B47945CCA09BCD5 /* ChapterTests.swift in Sources */,
 				52A0D68252AECC6FF3838E2B /* CommunityTests.swift in Sources */,
 				10E36D97192BF90114FBB526 /* Fixtures.swift in Sources */,
+				12D05C7688A3BA3C1C2B43DF /* RideOperationsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,18 +283,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67CB18BE78AF9D4E7EB7E35B /* AppRuntime.swift in Sources */,
+				95BD9F5E4C12269B233BAAF4 /* CarPlaySceneDelegate.swift in Sources */,
 				C13F3E3C07CBD737E6D6D77B /* ChapterAPI.swift in Sources */,
 				2F4AF5C3D722A955764A5FBD /* ChapterStore.swift in Sources */,
 				C55B49712A8B907FF9DF86BC /* ChatThread.swift in Sources */,
+				D1A1461C5CD01CEB618F16BC /* CommunicationIntents.swift in Sources */,
 				BF217521D9A1AA5D4C64357A /* CommunicationsScreens.swift in Sources */,
 				210F8CA4CFE3F67FDA1A8C2B /* CommunityModels.swift in Sources */,
 				E08DBA0BE30B0348EA73DDD7 /* CommunityStore.swift in Sources */,
 				87D07F37AE64563AD6910D11 /* DesignSystem.swift in Sources */,
+				F19E22FB579B0C598F85C50B /* IntercomCallCoordinator.swift in Sources */,
 				211FB0A5375D2E015B59846F /* LiveRideScreen.swift in Sources */,
 				359A95A4BAFD4E24EC26C380 /* MemberScreens.swift in Sources */,
 				D174BBE51DB58CB5737708DE /* Models.swift in Sources */,
 				E9050F1CFC9A5A813012EDA6 /* PublicScreens.swift in Sources */,
 				D894FDD9EB7AB3F253D4BE18 /* RideLocationDriver.swift in Sources */,
+				E0DA02006A3E900A19063354 /* RideOperationsModels.swift in Sources */,
+				95121714667A938517960190 /* RideOperationsScreen.swift in Sources */,
+				0CC72968547FF6E5DC6B5493 /* RideOperationsStore.swift in Sources */,
+				C4493BD50F4D179B67588C06 /* RideRequestOutbox.swift in Sources */,
+				3B744F3A6976EB8712E9485B /* RideRouteTools.swift in Sources */,
+				6FFB9044AF90BDC091564D69 /* SiriMessageService.swift in Sources */,
 				2B79E19DD26C067E109F82A4 /* Storage.swift in Sources */,
 				AD5DCE4E23938B7219293164 /* VoiceIntercom.swift in Sources */,
 				CB73678F3F796C352FDC501B /* WidowsSonsApp.swift in Sources */,
@@ -328,7 +372,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 0.6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -400,7 +444,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 0.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -434,6 +478,142 @@
 			};
 			name = Release;
 		};
+		619A762CE84C2F11B912DD5A /* CarPlay-Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.6.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_APPROACHABLE_CONCURRENCY = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WIDOWS_SONS_BASE_URL = "https://wsmba.the-grange.uk";
+			};
+			name = "CarPlay-Release";
+		};
+		67720C9FE83100EA2E875CE5 /* CarPlay-Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Configuration/CarPlay.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Configuration/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.thegrange.widowsSons;
+				PRODUCT_NAME = WidowsSons;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "CarPlay-Release";
+		};
+		76F083822A5EE6EB20AEFBED /* CarPlay-Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.thegrange.widowsSons.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WidowsSons.app/WidowsSons";
+			};
+			name = "CarPlay-Debug";
+		};
+		844A3C766CA12157A94BA41E /* CarPlay-Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.thegrange.widowsSons.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WidowsSons.app/WidowsSons";
+			};
+			name = "CarPlay-Release";
+		};
+		A7CD93ACE046DD7A949669E8 /* CarPlay-Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Configuration/CarPlay.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Configuration/Info-Debug.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.thegrange.widowsSons;
+				PRODUCT_NAME = WidowsSons;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "CarPlay-Debug";
+		};
 		B0E97C5E71C99CCD8A518A85 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -451,6 +631,79 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		CD7ED8EB345AFD870FCEF08B /* CarPlay-Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.6.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_APPROACHABLE_CONCURRENCY = NO;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WIDOWS_SONS_BASE_URL = "http://localhost:19820";
+			};
+			name = "CarPlay-Debug";
 		};
 		CF149B0C065EA221924B3493 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -493,29 +746,35 @@
 		27EB14DECD29F7DA9F6F5D6D /* Build configuration list for PBXNativeTarget "WidowsSonsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
+				76F083822A5EE6EB20AEFBED /* CarPlay-Debug */,
+				844A3C766CA12157A94BA41E /* CarPlay-Release */,
 				EB29B3DD255D315CA5480837 /* Debug */,
 				4AF33F02EB59228ECEBB0532 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = "CarPlay-Debug";
 		};
 		B1BBDDA4514D373EA2AF904A /* Build configuration list for PBXProject "WidowsSons" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
+				CD7ED8EB345AFD870FCEF08B /* CarPlay-Debug */,
+				619A762CE84C2F11B912DD5A /* CarPlay-Release */,
 				23FA2906618DC4872D9BD8BB /* Debug */,
 				224099F16AC284144A7A5FFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = "CarPlay-Debug";
 		};
 		E03B3AEA03F988F5C964A918 /* Build configuration list for PBXNativeTarget "WidowsSons" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
+				A7CD93ACE046DD7A949669E8 /* CarPlay-Debug */,
+				67720C9FE83100EA2E875CE5 /* CarPlay-Release */,
 				B0E97C5E71C99CCD8A518A85 /* Debug */,
 				CF149B0C065EA221924B3493 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = "CarPlay-Debug";
 		};
 /* End XCConfigurationList section */
 

@@ -18,6 +18,7 @@ from fastapi import Depends, HTTPException, Query, Request, Response
 import jwt
 from livekit import api as livekit
 from pydantic import BaseModel, Field, field_validator
+from ride_operations import install_ride_operations, record_join, record_end
 
 
 class DirectBody(BaseModel):
@@ -240,6 +241,8 @@ def install_community(app, connect, identity, cms, chapter):
         with connect() as db:
             lock_identity(db, member)
             conversation(db, member, conversation_id)
+            if body.message_id > 0 and not db.execute('SELECT 1 FROM conversation_messages WHERE organisation_id=%s AND conversation_id=%s AND id=%s', (member['organisation_id'], conversation_id, body.message_id)).fetchone():
+                raise HTTPException(404, 'Message not found in this conversation.')
             maximum = db.execute('SELECT COALESCE(max(id),0) AS n FROM conversation_messages WHERE organisation_id=%s AND conversation_id=%s', (member['organisation_id'], conversation_id)).fetchone()['n']
             db.execute("""INSERT INTO conversation_reads VALUES(%s,%s,%s,%s) ON CONFLICT(organisation_id,conversation_id,member_id)
               DO UPDATE SET last_read_id=GREATEST(conversation_reads.last_read_id,EXCLUDED.last_read_id)""", (member['organisation_id'], conversation_id, member['id'], min(body.message_id, maximum)))
@@ -288,6 +291,7 @@ def install_community(app, connect, identity, cms, chapter):
             if not db.execute("""SELECT 1 FROM mobile_rsvps WHERE organisation_id=%s AND member_id=%s
               AND event_id=%s AND response='going'""", (member['organisation_id'], member['id'], event_id)).fetchone():
                 raise HTTPException(403, 'RSVP Going before joining the live ride.')
+            record_join(db, member, event_id, expires)
             db.execute("""UPDATE live_riders SET state='left',sharing=false,sharing_id=NULL,latitude=NULL,longitude=NULL,accuracy=NULL,captured_at=NULL,received_at=NULL
               WHERE organisation_id=%s AND member_id=%s AND state='riding'""", (member['organisation_id'], member['id']))
             db.execute("""INSERT INTO live_riders(organisation_id,event_id,member_id,session_hash,expires_at)
@@ -359,16 +363,20 @@ def install_community(app, connect, identity, cms, chapter):
             lock_identity(db, member)
             active_rider(db, member, event_id)
             db.execute('UPDATE live_riders SET checked_in_at=now() WHERE organisation_id=%s AND event_id=%s AND member_id=%s', (member['organisation_id'], event_id, member['id']))
+            db.execute('UPDATE ride_participation SET checked_in_at=now() WHERE organisation_id=%s AND event_id=%s AND member_id=%s', (member['organisation_id'], event_id, member['id']))
         return Response(status_code=204)
 
     @app.post(prefix + '/rides/{event_id}/end', status_code=204)
     def end(slug: str, event_id: str, body: EndBody, member=Depends(identity)):
         with connect() as db:
             lock_identity(db, member)
+            record_end(db, member, event_id, body.state)
             db.execute("""UPDATE live_riders SET state=%s,sharing=false,sharing_id=NULL,latitude=NULL,longitude=NULL,accuracy=NULL,
               captured_at=NULL,received_at=NULL,checked_in_at=now() WHERE organisation_id=%s AND event_id=%s AND member_id=%s""", (body.state, member['organisation_id'], event_id, member['id']))
             db.execute('UPDATE voice_grants SET revoked_at=now() WHERE organisation_id=%s AND member_id=%s AND event_id=%s AND revoked_at IS NULL', (member['organisation_id'], member['id'], event_id))
         return Response(status_code=204)
+
+    install_ride_operations(app, connect, identity, published_ride, lock_identity, active_rider)
 
     def voice_config():
         key, secret = os.environ.get('WIDOWS_SONS_VOICE_KEY'), os.environ.get('WIDOWS_SONS_VOICE_SECRET')

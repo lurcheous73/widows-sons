@@ -1,5 +1,14 @@
 # Development status — 19 October 2026
 
+## Ride operations and CarPlay — native 0.6.0
+
+- The owner requested continuation against the specification and a CarPlay companion, with the two-iPhone field trial deferred until the design brief is complete. The current interface brief is `design-brief.md`.
+- Added event-scoped organiser delegation; accepted Lead/Sweep/deputy/responder roles; audited handovers; editable briefings/stops; GPX route preview/import/export; and a native Calendar editor.
+- Added private help/SOS/check-in requests, independent Guardian acknowledgements/responding, reasoned resolution/reopening, arrivals/assistance, closure checks and protected pending-request retries. Expired sharing never counts as a safe arrival.
+- CarPlay Communication templates, Siri message intents, Start Call handoff and physical-phone CallKit code are implemented. Push-to-talk, timed vehicle speech and system voice ducking are included. Apple managed entitlement approval, signing and real head-unit/Siri/headset trials remain required.
+- 52 PostgreSQL/API tests and 38 native Swift tests passed; CarPlay Debug Simulator and unsigned Release iPhone code compiled. Simulator storage tests verify queue separation/backup exclusion; physical file encryption/locked-phone behaviour still needs a real device.
+- Foreground badges are implemented. Background APNs, automatic accident detection, outside-contact dispatch, a custom CarPlay navigation map and the rest of the platform remain outstanding. See `ride-operations-build.md`.
+
 ## Communications priority — native 0.5.0
 - The owner prioritised communications, tracking and messaging. The native app now has chapter/direct/ride conversations, server-confirmed text sending, history, unread counts, blocking and reports.
 - LiveKit Swift 2.18.0 and self-hosted LiveKit server 1.13.10 provide audio rooms, muted joins, microphone controls and participant state. Private Nginx admission checks and a maintenance sweep enforce voice leases and revoked sign-ins.
@@ -31,7 +40,7 @@
 The owner is handling Cloudflare/public DNS. A covering certificate and enforced trusted HTTPS are pending that step. Editor sign-in must use trusted HTTPS. Search indexing and outbound email are disabled in development. Initial account emails use reserved `.invalid` placeholders.
 
 ## Remaining application work
-This build is for private chapter review. Membership is provisioned by an operator CLI; member/admin approval screens, renewals, deletion self-service, push notifications, attachments, GPX/calendar export, payments, fundraising, Ride Guardian escalation, music controls and confidential welfare remain unimplemented. Messaging, opt-in tracking and voice rooms are implemented in native 0.5.0. Physical helmet/cellular/locked-screen and battery trials, public media deployment, Android validation and signed iPhone/TestFlight distribution are pending.
+This build is for private chapter review. Membership and event-organiser delegation are provisioned by operator CLIs. Member/admin approval screens, renewals, deletion self-service, background push, attachments, payments, fundraising, outside-contact escalation, owned-media transport controls and confidential welfare remain unimplemented. Messaging, tracking and intercom are implemented; native 0.6.0 adds the Guardian/route/CarPlay work above. Physical helmet/cellular/locked-screen and battery trials, Apple entitlement approval, public media deployment, Android validation and signed iPhone/TestFlight distribution are pending.
 
 See `deploy/VM20000.md` for operations and `cms/EDITOR-GUIDE.md` for chapter editing.
 See `docs/mobile-build.md` and `mobile/README.md` for mobile operations and simulator setup.

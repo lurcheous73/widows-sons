@@ -13,6 +13,11 @@ struct LiveRideScreen: View {
         message: "Check in with your group. You decide when your position is shared.")
       if let ride = community.activeRide {
         if community.isVerified {
+          NavigationLink(
+            value: ChapterRoute.rideOperations(eventID: ride.eventID, title: ride.title)
+          ) {
+            Label("Ride Guardians, briefing & requests", systemImage: "checkmark.shield")
+          }.buttonStyle(BrassButtonStyle(outlined: true)).accessibilityIdentifier("ride.guardians")
           RideMap(riders: community.snapshot?.riders ?? [])
           ChapterCard {
             VStack(alignment: .leading, spacing: 16) {
@@ -85,7 +90,7 @@ struct LiveRideScreen: View {
           Button("Leave ride safely") { confirmingEnd = true }
             .buttonStyle(BrassButtonStyle(outlined: true)).disabled(community.isRideBusy)
           Text(
-            "Positions depend on phone signal and GPS. This build has no SOS dispatch or automatic incident detection. Set controls while stopped."
+            "Positions depend on phone signal and GPS. Guardian requests have a separate delivery and acknowledgement log. Set phone controls while stopped."
           )
           .font(.footnote).foregroundStyle(Heritage.muted)
         } else {

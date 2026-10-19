@@ -1,4 +1,9 @@
 name: WidowsSons
+configs:
+  Debug: debug
+  Release: release
+  CarPlay-Debug: debug
+  CarPlay-Release: release
 options:
   minimumXcodeGenVersion: 2.46.0
   deploymentTarget:
@@ -18,7 +23,7 @@ settings:
     SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
     SWIFT_APPROACHABLE_CONCURRENCY: NO
     IPHONEOS_DEPLOYMENT_TARGET: '17.0'
-    MARKETING_VERSION: 0.5.0
+    MARKETING_VERSION: 0.6.0
     CURRENT_PROJECT_VERSION: 1
     TARGETED_DEVICE_FAMILY: '1,2'
     CODE_SIGN_STYLE: Automatic
@@ -28,6 +33,10 @@ settings:
     Debug:
       WIDOWS_SONS_BASE_URL: http://localhost:19820
     Release:
+      WIDOWS_SONS_BASE_URL: https://wsmba.the-grange.uk
+    CarPlay-Debug:
+      WIDOWS_SONS_BASE_URL: http://localhost:19820
+    CarPlay-Release:
       WIDOWS_SONS_BASE_URL: https://wsmba.the-grange.uk
 targets:
   WidowsSons:
@@ -52,6 +61,12 @@ targets:
       configs:
         Debug:
           INFOPLIST_FILE: Configuration/Info-Debug.plist
+        CarPlay-Debug:
+          INFOPLIST_FILE: Configuration/Info-Debug.plist
+          CODE_SIGN_ENTITLEMENTS: Configuration/CarPlay.entitlements
+        CarPlay-Release:
+          INFOPLIST_FILE: Configuration/Info.plist
+          CODE_SIGN_ENTITLEMENTS: Configuration/CarPlay.entitlements
   WidowsSonsTests:
     type: bundle.unit-test
     platform: iOS
@@ -78,3 +93,16 @@ schemes:
       config: Debug
     archive:
       config: Release
+  WidowsSons-CarPlay:
+    build:
+      targets:
+        WidowsSons: all
+        WidowsSonsTests: [test]
+    run:
+      config: CarPlay-Debug
+    test:
+      config: CarPlay-Debug
+      targets:
+        - WidowsSonsTests
+    archive:
+      config: CarPlay-Release

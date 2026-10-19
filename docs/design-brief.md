@@ -1,10 +1,10 @@
 # Widows Sons — Heritage & Road design brief
 
-Implementation brief 1.0 · 19 October 2026 · native iOS 0.6.0.
+Implementation brief 1.1 · 19 October 2026 · native iOS 0.7.0.
 
 This records the owner's Swift, self-hosting, communications, tracking, messaging
 and CarPlay instructions. The interface specification below is complete for the
-current ride-and-communications milestone. Chapter policies, eligibility,
+current ride, communications and ordinary clubhouse milestones. Chapter policies, eligibility,
 official artwork and commercial/welfare approvals remain consultation decisions;
 this document does not represent their approval or a completed full-platform build.
 
@@ -195,3 +195,37 @@ retry, GPS age/expiry/Stop/Home, both Guardian receipts and battery usage.
 
 Each result should record phone/OS/headset/head-unit models and network. Simulator
 and API checks support development; they do not substitute for these trials.
+
+
+## Community Sections extension — native 0.7.0
+
+This extension uses the same Heritage & Road typography, colours, cards and five
+tabs. Comms opens the clubhouse directory; Community Sections never appear as
+CarPlay/Siri conversations. Ride controls stay in the existing riding surfaces.
+No real chapter section or membership policy has been created by the build.
+
+| Screen | Content and actions | Permission and failure states |
+| --- | --- | --- |
+| Comms / clubhouse entry | Clear Community Sections card beside the intercom/messages journey | Online member verification required |
+| Community sections | Named groups, purpose, joining policy, membership/availability labels | Invite-only groups hidden from uninvited members; chapter configuration delegates can see names/settings without contents; no public directory |
+| Section | Description, explicit Join / Request / Accept, newest discussions, pinned posts within loaded history, earlier posts, Leave | Pending/invited cannot read; paused hides content; archived permits existing-member reading; removed access clears private data when checked |
+| New post | Discussion, optional moderator announcement, or informal poll; title/body | Server-confirmed delivery, stable retry identifier, changed unconfirmed content gets a new identifier; failed sends remain in memory while the editor is open |
+| Poll editor | Two to eight distinct choices, closing time up to 90 days | No edits to question/options after publication; no eligibility inferred; poll is not secret or binding |
+| Conversation / poll | Author/date/body, aggregate choices, your selected choice, comments and earlier history | One choice per member, change/withdraw before closure; moderator may close early; server rejects expired or archived writes |
+| Members & moderation | Pending requests/invitations, scoped role changes/removal, reports and activity | Active section moderators only; last active moderator needs a replacement; chapter administration alone cannot open it |
+| Section settings | Name/purpose, joining policy, active/paused/archived | Chapter section.manage plus active moderator membership; revision conflict asks refresh; access/availability change gets an explicit confirmation and audit |
+| Content report / removal | Written reason/outcome | Reports remain pending until reviewed; no urgent dispatch; removed text erased from live records, visible marker retained |
+
+Section content, memberships, reports and drafts stay out of the public cache.
+Views and sheets clear private state when the phone leaves the foreground,
+including when a CarPlay communication session stays connected. Every private
+read/write checks the server session and section membership. Screens refresh on
+open, return and pull-down; this milestone does not claim background alerts or
+live push for section posts/invitations. Leaving does not erase past posts,
+comments or poll choices. Names/settings may be visible to chapter configuration
+delegates, but private content/rosters require the explicit section role.
+
+Native review uses clearly labelled disposable QA members/groups and removes
+them afterwards. The wider brief still includes section documents/events/media,
+public publishing rules, membership administration/MFA and independent Almoner
+services; those are not claimed by this extension.

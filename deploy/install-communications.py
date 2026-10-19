@@ -36,6 +36,7 @@ def main():
     run('/srv/widows-sons/venv/bin/pip', 'install', '-r', str(root / 'backend/requirements.txt'))
     run('runuser', '-u', 'postgres', '--', 'psql', '-v', 'ON_ERROR_STOP=1', '-d', 'widowssons', '-f', str(root / 'backend/community_schema.sql'))
     run('runuser', '-u', 'postgres', '--', 'psql', '-v', 'ON_ERROR_STOP=1', '-d', 'widowssons', '-f', str(root / 'backend/ride_schema.sql'))
+    run('runuser', '-u', 'postgres', '--', 'psql', '-v', 'ON_ERROR_STOP=1', '-d', 'widowssons', '-f', str(root / 'backend/clubhouse_schema.sql'))
     grants = '''
 GRANT SELECT,INSERT,UPDATE ON conversations,conversation_messages,conversation_reads,member_blocks,message_reports,live_riders,voice_grants TO widowsapp;
 GRANT DELETE ON member_blocks,live_riders,voice_grants TO widowsapp;
@@ -44,6 +45,10 @@ GRANT SELECT ON ride_managers,role_grants TO widowsapp;
 GRANT SELECT,INSERT,UPDATE ON ride_plans,ride_assignments,ride_participation,ride_incidents,ride_incident_receipts TO widowsapp;
 GRANT SELECT,INSERT ON ride_activity TO widowsapp;
 GRANT USAGE ON SEQUENCE ride_activity_id_seq TO widowsapp;
+GRANT SELECT,INSERT,UPDATE ON clubhouse_sections,clubhouse_memberships,clubhouse_posts,clubhouse_comments,clubhouse_votes,clubhouse_reports TO widowsapp;
+GRANT DELETE ON clubhouse_votes TO widowsapp;
+GRANT SELECT,INSERT ON clubhouse_activity TO widowsapp;
+GRANT USAGE ON SEQUENCE clubhouse_comments_id_seq,clubhouse_activity_id_seq TO widowsapp;
 '''
     run('runuser', '-u', 'postgres', '--', 'psql', '-v', 'ON_ERROR_STOP=1', '-d', 'widowssons', input=grants)
     try:

@@ -1,5 +1,14 @@
 # Development status — 19 October 2026
 
+## Community sections — native 0.7.0
+
+- Added optional, named Community Sections to Comms with explicit open joining, approval requests or invitation acceptance. No default Ladies/Family/Associate section or eligibility policy is inferred.
+- Native discussion/announcement/poll publishing, comments, server-confirmed retries, choice changes/withdrawal, pinning and reasoned content removal are implemented. Polls are informal, with aggregate totals and server-held vote identities; they are not secret or binding ballots.
+- Section moderators can invite/approve/remove access, delegate their section role, review reports and record outcomes. The last active moderator cannot abandon an active section without a replacement. Chapter section.manage delegates can create/configure sections, but must already be active section moderators to reconfigure existing groups.
+- Ordinary clubhouse tables are separate from the reserved welfare tables. General administration has no implicit access to private section content or rosters. Section text is never included in public offline reading, Siri or CarPlay.
+- Native 0.7.0 retains the 0.6.0 ride, communication and CarPlay implementation. Two-iPhone, headset and head-unit acceptance remains deferred as requested. Background push, documents/media and the wider membership/commerce/welfare work remain outstanding.
+- 73 PostgreSQL/API tests and 47 native Swift tests passed. CarPlay Debug Simulator and unsigned CarPlay Release iPhone builds compiled. See `community-sections-build.md` for exact scope and validation.
+
 ## Ride operations and CarPlay — native 0.6.0
 
 - The owner requested continuation against the specification and a CarPlay companion, with the two-iPhone field trial deferred until the design brief is complete. The current interface brief is `design-brief.md`.

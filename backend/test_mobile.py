@@ -26,6 +26,7 @@ def database(monkeypatch):
         db.execute(Path(__file__).with_name('mobile_schema.sql').read_text())
         db.execute(Path(__file__).with_name('community_schema.sql').read_text())
         db.execute(Path(__file__).with_name('ride_schema.sql').read_text())
+        db.execute(Path(__file__).with_name('clubhouse_schema.sql').read_text())
         db.execute("INSERT INTO organisations(slug,name,display_name) VALUES('other','Other chapter','Other')")
     def cms(path):
         if path == '/wp-json/wp/v2/ws_event/42':

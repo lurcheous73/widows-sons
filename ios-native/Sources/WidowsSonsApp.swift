@@ -67,6 +67,10 @@ enum ChapterRoute: Hashable {
   case privacy, licences
   case conversation(ConversationSummary)
   case liveRide
+  case clubSections
+  case clubSection(String)
+  case clubPost(sectionID: String, postID: String)
+  case clubModeration(String)
   case rideOperations(eventID: String, title: String, initialTab: RideDetailTab = .briefing)
 }
 
@@ -161,6 +165,16 @@ struct ChapterShell: View {
           if let community = store.community {
             ConversationScreen(conversation: conversation, community: community)
           }
+        case .clubSections:
+          if let community = store.community { ClubhouseDirectoryScreen(community: community) }
+        case .clubSection(let id):
+          if let community = store.community { ClubSectionScreen(id: id, community: community) }
+        case .clubPost(let sectionID, let postID):
+          if let community = store.community {
+            ClubPostScreen(sectionID: sectionID, postID: postID, community: community)
+          }
+        case .clubModeration(let id):
+          if let community = store.community { ClubModerationScreen(id: id, community: community) }
         case .liveRide:
           if let community = store.community { LiveRideScreen(community: community) }
         case .rideOperations(let eventID, let title, let initialTab):

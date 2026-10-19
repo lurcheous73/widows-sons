@@ -1,8 +1,7 @@
 # Road roles, administration, and community sections
 
 Status: native 0.6.0 implements event-scoped organiser delegation and accepted
-road roles with an audited handover. Community Sections and the wider chapter
-administration hierarchy remain design requirements. See `ride-operations-build.md`.
+road roles with an audited handover. Native 0.7.0 implements ordinary Community Sections with explicit membership, scoped moderation, discussions, announcements and informal polls. Public section content, section documents/events and the wider chapter administration hierarchy remain requirements. See `ride-operations-build.md` and `community-sections-build.md`.
 
 ## Separation of responsibilities
 

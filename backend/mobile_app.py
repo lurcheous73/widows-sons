@@ -21,7 +21,7 @@ DSN = os.environ.get('WIDOWS_SONS_MOBILE_DSN', 'dbname=widowssons user=widowsapp
 CMS_URL = os.environ.get('WIDOWS_SONS_CMS_URL', 'http://127.0.0.1:8080').rstrip('/')
 CMS_HOST = os.environ.get('WIDOWS_SONS_CMS_HOST', 'wsmba.the-grange.uk')
 CMS_SLUG = os.environ.get('WIDOWS_SONS_CMS_SLUG', 'lr')
-app = FastAPI(title='Widows Sons mobile', version='0.6.0')
+app = FastAPI(title='Widows Sons mobile', version='0.7.0')
 PREFIX = '/api/v1/mobile'
 
 
@@ -101,7 +101,7 @@ async def private_headers(request, call_next):
 def health():
     with connect() as db:
         db.execute('SELECT 1 FROM mobile_sessions LIMIT 1')
-    return {'status': 'ok', 'project': 'widows-sons', 'service': 'mobile', 'version': '0.6.0'}
+    return {'status': 'ok', 'project': 'widows-sons', 'service': 'mobile', 'version': '0.7.0'}
 
 
 @app.get(PREFIX + '/{slug}/feed')
@@ -222,3 +222,6 @@ def sign_out(slug: str, member=Depends(identity)):
 
 from community import install_community
 install_community(app, connect, identity, lambda path: cms(path), lambda slug: chapter(slug))
+
+from clubhouse import install_clubhouse
+install_clubhouse(app, connect, identity)

@@ -10,14 +10,23 @@
 		0E492E58222D9B2C46D80E74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E56976710776C570D77FCEF /* Assets.xcassets */; };
 		10E36D97192BF90114FBB526 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BAAD418DDFD6801FD60071 /* Fixtures.swift */; };
 		1A3088842175693329982A0C /* ThirdPartyNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = B5A045F657BE274C000FB51C /* ThirdPartyNotices.txt */; };
+		210F8CA4CFE3F67FDA1A8C2B /* CommunityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854209975A06ECB9A3F9FB2F /* CommunityModels.swift */; };
+		211FB0A5375D2E015B59846F /* LiveRideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9FFC71665E145FFCFBD1D /* LiveRideScreen.swift */; };
 		2B79E19DD26C067E109F82A4 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F629DDB21385CAE3BB9968 /* Storage.swift */; };
 		2F4AF5C3D722A955764A5FBD /* ChapterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC1C7A403F7A68FCB832B22 /* ChapterStore.swift */; };
 		359A95A4BAFD4E24EC26C380 /* MemberScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B355EE212E49E9D82581BEDF /* MemberScreens.swift */; };
+		52A0D68252AECC6FF3838E2B /* CommunityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F58DBE826B0FA14079E1FB /* CommunityTests.swift */; };
 		67BC7E4C9B47945CCA09BCD5 /* ChapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADBD7B1A81792604424193E /* ChapterTests.swift */; };
+		6F3BC392F71CE7598E926AC4 /* LiveKit in Frameworks */ = {isa = PBXBuildFile; productRef = 36312BD2CE21F2F87D1AA224 /* LiveKit */; };
 		87D07F37AE64563AD6910D11 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F56590D34D4AEF7DF96A8F /* DesignSystem.swift */; };
+		AD5DCE4E23938B7219293164 /* VoiceIntercom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE9A9ED0AC5EB628B5119A /* VoiceIntercom.swift */; };
+		BF217521D9A1AA5D4C64357A /* CommunicationsScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F22F7F061D474791DF489 /* CommunicationsScreens.swift */; };
 		C13F3E3C07CBD737E6D6D77B /* ChapterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB431CD4D3F157D02011EFD /* ChapterAPI.swift */; };
+		C55B49712A8B907FF9DF86BC /* ChatThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209D4D52F348ED862C6C829 /* ChatThread.swift */; };
 		CB73678F3F796C352FDC501B /* WidowsSonsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FD3977199179831DD1610 /* WidowsSonsApp.swift */; };
 		D174BBE51DB58CB5737708DE /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C52E0136F811CB6EB9663ED /* Models.swift */; };
+		D894FDD9EB7AB3F253D4BE18 /* RideLocationDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68FB3A3B58DF8A9BF0D2A9B /* RideLocationDriver.swift */; };
+		E08DBA0BE30B0348EA73DDD7 /* CommunityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C64302BCB9C69B9CCDF91 /* CommunityStore.swift */; };
 		E9050F1CFC9A5A813012EDA6 /* PublicScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F95A37718C3F72AF98D73B /* PublicScreens.swift */; };
 		FB83C33D661A36A511462388 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 7853E9109382484F76E69793 /* KeychainAccess */; };
 /* End PBXBuildFile section */
@@ -33,18 +42,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04F58DBE826B0FA14079E1FB /* CommunityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTests.swift; sourceTree = "<group>"; };
 		0A3FD3977199179831DD1610 /* WidowsSonsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidowsSonsApp.swift; sourceTree = "<group>"; };
 		0EB431CD4D3F157D02011EFD /* ChapterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterAPI.swift; sourceTree = "<group>"; };
+		116C64302BCB9C69B9CCDF91 /* CommunityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityStore.swift; sourceTree = "<group>"; };
 		3E56976710776C570D77FCEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5ADBD7B1A81792604424193E /* ChapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterTests.swift; sourceTree = "<group>"; };
 		600C50D2C5A239F3B96BD0F8 /* WidowsSons.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = WidowsSons.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		854209975A06ECB9A3F9FB2F /* CommunityModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityModels.swift; sourceTree = "<group>"; };
 		8C52E0136F811CB6EB9663ED /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		918ADFE113D2EF02EB7F11A4 /* WidowsSonsTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WidowsSonsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B15F22F7F061D474791DF489 /* CommunicationsScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationsScreens.swift; sourceTree = "<group>"; };
 		B355EE212E49E9D82581BEDF /* MemberScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberScreens.swift; sourceTree = "<group>"; };
 		B5A045F657BE274C000FB51C /* ThirdPartyNotices.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ThirdPartyNotices.txt; sourceTree = "<group>"; };
+		BAEE9A9ED0AC5EB628B5119A /* VoiceIntercom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceIntercom.swift; sourceTree = "<group>"; };
+		C68FB3A3B58DF8A9BF0D2A9B /* RideLocationDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideLocationDriver.swift; sourceTree = "<group>"; };
 		D1F95A37718C3F72AF98D73B /* PublicScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicScreens.swift; sourceTree = "<group>"; };
 		D3F629DDB21385CAE3BB9968 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		DAC1C7A403F7A68FCB832B22 /* ChapterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterStore.swift; sourceTree = "<group>"; };
+		E209D4D52F348ED862C6C829 /* ChatThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatThread.swift; sourceTree = "<group>"; };
+		F0B9FFC71665E145FFCFBD1D /* LiveRideScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveRideScreen.swift; sourceTree = "<group>"; };
 		F2BAAD418DDFD6801FD60071 /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		F4F56590D34D4AEF7DF96A8F /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB83C33D661A36A511462388 /* KeychainAccess in Frameworks */,
+				6F3BC392F71CE7598E926AC4 /* LiveKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				5ADBD7B1A81792604424193E /* ChapterTests.swift */,
+				04F58DBE826B0FA14079E1FB /* CommunityTests.swift */,
 				F2BAAD418DDFD6801FD60071 /* Fixtures.swift */,
 			);
 			path = Tests;
@@ -95,11 +114,18 @@
 			children = (
 				0EB431CD4D3F157D02011EFD /* ChapterAPI.swift */,
 				DAC1C7A403F7A68FCB832B22 /* ChapterStore.swift */,
+				E209D4D52F348ED862C6C829 /* ChatThread.swift */,
+				B15F22F7F061D474791DF489 /* CommunicationsScreens.swift */,
+				854209975A06ECB9A3F9FB2F /* CommunityModels.swift */,
+				116C64302BCB9C69B9CCDF91 /* CommunityStore.swift */,
 				F4F56590D34D4AEF7DF96A8F /* DesignSystem.swift */,
+				F0B9FFC71665E145FFCFBD1D /* LiveRideScreen.swift */,
 				B355EE212E49E9D82581BEDF /* MemberScreens.swift */,
 				8C52E0136F811CB6EB9663ED /* Models.swift */,
 				D1F95A37718C3F72AF98D73B /* PublicScreens.swift */,
+				C68FB3A3B58DF8A9BF0D2A9B /* RideLocationDriver.swift */,
 				D3F629DDB21385CAE3BB9968 /* Storage.swift */,
+				BAEE9A9ED0AC5EB628B5119A /* VoiceIntercom.swift */,
 				0A3FD3977199179831DD1610 /* WidowsSonsApp.swift */,
 			);
 			path = Sources;
@@ -131,6 +157,7 @@
 			name = WidowsSons;
 			packageProductDependencies = (
 				7853E9109382484F76E69793 /* KeychainAccess */,
+				36312BD2CE21F2F87D1AA224 /* LiveKit */,
 			);
 			productName = WidowsSons;
 			productReference = 600C50D2C5A239F3B96BD0F8 /* WidowsSons.app */;
@@ -182,6 +209,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				AA2363500BBDB8C01132645F /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				779A3C99CF4FEF2FC55BD2CE /* XCRemoteSwiftPackageReference "client-sdk-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 95A0348E784D4B8007EDE063 /* Products */;
@@ -212,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67BC7E4C9B47945CCA09BCD5 /* ChapterTests.swift in Sources */,
+				52A0D68252AECC6FF3838E2B /* CommunityTests.swift in Sources */,
 				10E36D97192BF90114FBB526 /* Fixtures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,11 +251,18 @@
 			files = (
 				C13F3E3C07CBD737E6D6D77B /* ChapterAPI.swift in Sources */,
 				2F4AF5C3D722A955764A5FBD /* ChapterStore.swift in Sources */,
+				C55B49712A8B907FF9DF86BC /* ChatThread.swift in Sources */,
+				BF217521D9A1AA5D4C64357A /* CommunicationsScreens.swift in Sources */,
+				210F8CA4CFE3F67FDA1A8C2B /* CommunityModels.swift in Sources */,
+				E08DBA0BE30B0348EA73DDD7 /* CommunityStore.swift in Sources */,
 				87D07F37AE64563AD6910D11 /* DesignSystem.swift in Sources */,
+				211FB0A5375D2E015B59846F /* LiveRideScreen.swift in Sources */,
 				359A95A4BAFD4E24EC26C380 /* MemberScreens.swift in Sources */,
 				D174BBE51DB58CB5737708DE /* Models.swift in Sources */,
 				E9050F1CFC9A5A813012EDA6 /* PublicScreens.swift in Sources */,
+				D894FDD9EB7AB3F253D4BE18 /* RideLocationDriver.swift in Sources */,
 				2B79E19DD26C067E109F82A4 /* Storage.swift in Sources */,
+				AD5DCE4E23938B7219293164 /* VoiceIntercom.swift in Sources */,
 				CB73678F3F796C352FDC501B /* WidowsSonsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +328,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.4.0;
+				MARKETING_VERSION = 0.5.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -364,7 +400,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.4.0;
+				MARKETING_VERSION = 0.5.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -484,6 +520,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		779A3C99CF4FEF2FC55BD2CE /* XCRemoteSwiftPackageReference "client-sdk-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/livekit/client-sdk-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.18.0;
+			};
+		};
 		AA2363500BBDB8C01132645F /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
@@ -495,6 +539,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		36312BD2CE21F2F87D1AA224 /* LiveKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 779A3C99CF4FEF2FC55BD2CE /* XCRemoteSwiftPackageReference "client-sdk-swift" */;
+			productName = LiveKit;
+		};
 		7853E9109382484F76E69793 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA2363500BBDB8C01132645F /* XCRemoteSwiftPackageReference "KeychainAccess" */;

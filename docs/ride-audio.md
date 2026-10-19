@@ -1,6 +1,8 @@
 # Ride Audio: music and communications priority
 
-Status: design requirements only. No playback or Bluetooth integrations are implemented.
+Status: native 0.5.0 implements chapter/ride audio rooms, muted joins and microphone
+controls through LiveKit. Music playback/ducking, push-to-talk, emergency priority
+and physical Bluetooth headset trials remain requirements. See `communications-build.md`.
 
 ## User story
 As a rider, I can listen to my own music through a paired helmet headset. When my intercom receives speech, the app automatically reduces ("ducks") music; when the conversation ends it fades music back to normal. Emergency announcements always take precedence.

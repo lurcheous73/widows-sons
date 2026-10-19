@@ -24,8 +24,17 @@ def database(monkeypatch):
         db.execute('DROP SCHEMA public CASCADE; CREATE SCHEMA public;')
         db.execute(Path(__file__).with_name('schema.sql').read_text())
         db.execute(Path(__file__).with_name('mobile_schema.sql').read_text())
+        db.execute(Path(__file__).with_name('community_schema.sql').read_text())
         db.execute("INSERT INTO organisations(slug,name,display_name) VALUES('other','Other chapter','Other')")
     def cms(path):
+        if path == '/wp-json/wp/v2/ws_event/42':
+            from datetime import datetime
+            from zoneinfo import ZoneInfo
+            return {'id': 42, 'status': 'publish', 'title': {'rendered': 'Test ride'},
+                    'meta': {'_ws_starts_at': datetime.now(ZoneInfo('Europe/London')).strftime('%Y-%m-%dT%H:%M')}}
+        if '/wp/v2/ws_event/' in path:
+            from fastapi import HTTPException
+            raise HTTPException(404, 'Ride not found')
         if '/events' in path:
             return {'organisation': 'lr', 'events': [{'id': 'cms-42', 'title': 'Test ride', 'starts_at': '2099-01-01T10:00:00+00:00'}]}
         if '/posts?' in path:

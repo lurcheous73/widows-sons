@@ -21,7 +21,7 @@ DSN = os.environ.get('WIDOWS_SONS_MOBILE_DSN', 'dbname=widowssons user=widowsapp
 CMS_URL = os.environ.get('WIDOWS_SONS_CMS_URL', 'http://127.0.0.1:8080').rstrip('/')
 CMS_HOST = os.environ.get('WIDOWS_SONS_CMS_HOST', 'wsmba.the-grange.uk')
 CMS_SLUG = os.environ.get('WIDOWS_SONS_CMS_SLUG', 'lr')
-app = FastAPI(title='Widows Sons mobile', version='0.3.0')
+app = FastAPI(title='Widows Sons mobile', version='0.5.0')
 PREFIX = '/api/v1/mobile'
 
 
@@ -101,7 +101,7 @@ async def private_headers(request, call_next):
 def health():
     with connect() as db:
         db.execute('SELECT 1 FROM mobile_sessions LIMIT 1')
-    return {'status': 'ok', 'project': 'widows-sons', 'service': 'mobile', 'version': '0.3.0'}
+    return {'status': 'ok', 'project': 'widows-sons', 'service': 'mobile', 'version': '0.5.0'}
 
 
 @app.get(PREFIX + '/{slug}/feed')
@@ -112,7 +112,8 @@ def feed(slug: str):
     return {
         'chapter': {'slug': org['slug'], 'name': org['name'], 'display_name': org['display_name'], 'theme': org['theme'],
                     'tagline': 'Brotherhood. Bikes. Giving back.', 'website': 'https://' + CMS_HOST,
-                    'features': {'news': True, 'events': True, 'membership': True, 'rsvp': True, 'guardian': False, 'intercom': False}},
+                    'features': {'news': True, 'events': True, 'membership': True, 'rsvp': True, 'guardian': False,
+                                 'intercom': bool(os.environ.get('WIDOWS_SONS_VOICE_KEY')), 'messaging': True, 'tracking': True}},
         'news': [{'id': str(p['id']), 'title': plain(p['title']['rendered']), 'excerpt': plain(p['excerpt']['rendered']),
                   'body': plain(p['content']['rendered']), 'published_at': p['date_gmt'] + 'Z', 'url': p['link']} for p in posts],
         'events': published_events(slug),
@@ -202,6 +203,11 @@ def rsvp(slug: str, event_id: str, body: RSVPBody, member=Depends(identity)):
             ON CONFLICT(organisation_id,member_id,event_id) DO UPDATE SET response=EXCLUDED.response,updated_at=now()""",
                    (member['organisation_id'], member['id'], event_id, body.response))
         db.execute("INSERT INTO audit_events(organisation_id,actor_id,action,details) VALUES(%s,%s,'mobile.rsvp',jsonb_build_object('event_id',%s::text,'response',%s::text))", (member['organisation_id'], member['id'], event_id, body.response))
+        if body.response != 'going':
+            db.execute("""UPDATE live_riders SET state='left',sharing=false,sharing_id=NULL,latitude=NULL,longitude=NULL,
+              accuracy=NULL,captured_at=NULL,received_at=NULL WHERE organisation_id=%s AND member_id=%s AND event_id=%s""",
+                       (member['organisation_id'], member['id'], event_id))
+            db.execute('UPDATE voice_grants SET revoked_at=now() WHERE organisation_id=%s AND member_id=%s AND event_id=%s AND revoked_at IS NULL', (member['organisation_id'], member['id'], event_id))
     return {'event_id': event_id, 'response': body.response}
 
 
@@ -210,3 +216,7 @@ def sign_out(slug: str, member=Depends(identity)):
     with connect() as db:
         db.execute('UPDATE mobile_sessions SET revoked_at=now() WHERE token_hash=%s', (member['token_hash'],))
     return Response(status_code=204)
+
+
+from community import install_community
+install_community(app, connect, identity, lambda path: cms(path), lambda slug: chapter(slug))

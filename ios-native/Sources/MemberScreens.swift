@@ -170,6 +170,7 @@ struct EventScreen: View {
   let event: ChapterEvent
   let store: ChapterStore
   @State private var notice: String?
+  @State private var conversation: ConversationSummary?
   var body: some View {
     ChapterScroll(refresh: store.refresh) {
       Eyebrow("Ride together")
@@ -206,6 +207,39 @@ struct EventScreen: View {
           }
         }
       }
+      if let community = store.community, community.isVerified {
+        ChapterCard {
+          VStack(alignment: .leading, spacing: 16) {
+            Text("Keep the ride together.").font(Heritage.cardTitle).foregroundStyle(Heritage.paper)
+            Text(
+              "RSVP Going or Interested for ride messages. Choose Going to join the live map and ride intercom."
+            )
+            .foregroundStyle(Heritage.muted)
+            Button("Open ride conversation") {
+              Task {
+                do { conversation = try await community.rideConversation(event: event) } catch {
+                  notice = error.localizedDescription
+                }
+              }
+            }.buttonStyle(BrassButtonStyle(outlined: true)).accessibilityIdentifier(
+              "ride.conversation")
+            if community.activeRide?.eventID == event.id {
+              NavigationLink(value: ChapterRoute.liveRide) {
+                Label("Open live ride", systemImage: "map")
+              }
+              .buttonStyle(BrassButtonStyle()).accessibilityIdentifier("ride.openLive")
+            } else {
+              Button(community.isRideBusy ? "Joining…" : "Join live ride · sharing off") {
+                Task { await community.join(event: event) }
+              }.buttonStyle(BrassButtonStyle()).disabled(community.isRideBusy)
+                .accessibilityIdentifier("ride.join")
+            }
+            if let rideNotice = community.rideNotice {
+              Text(rideNotice).font(.footnote).foregroundStyle(Heritage.brass)
+            }
+          }
+        }
+      }
       if let url = ApprovedWebsite.link(event.url) {
         Link(destination: url) {
           Label("View on the chapter website", systemImage: "arrow.up.right.square")
@@ -213,6 +247,11 @@ struct EventScreen: View {
         .buttonStyle(BrassButtonStyle(outlined: true))
       }
     }.navigationTitle("Ride details").navigationBarTitleDisplayMode(.inline)
+      .navigationDestination(item: $conversation) { value in
+        if let community = store.community {
+          ConversationScreen(conversation: value, community: community)
+        }
+      }
       .toolbarBackground(Heritage.ink, for: .navigationBar).toolbarBackground(
         .visible, for: .navigationBar)
   }
@@ -244,11 +283,17 @@ struct PrivacyScreen: View {
 
         The chapter holds the name, email and membership details used to issue your invitation, your ride responses and an audit of account actions. This app provides access to your own membership and responses.
 
-        This review build does not collect location, microphone, contact or fitness data. Ride Guardian, SOS, intercom and confidential welfare services are not available in this build.
+        Member conversations and direct messages are held on the chapter server. Only the participants can open direct messages through the app. Messages use transport encryption on the production HTTPS service; this build does not claim end-to-end encrypted messaging. You can remove your own messages, block direct messages and save a report for chapter review. There are no push alerts or attachments yet.
+
+        Joining a live ride leaves location sharing off. You can opt in for that ride, with an iPhone permission prompt and a visible sharing control. Sharing can continue with the screen locked after you start it. Only active members who explicitly join the same ride can see positions. The server keeps one current fix, removes it on Stop, Home or Leave, and hides and purges fixes older than two minutes. No route history or home address is saved. A live ride session lasts up to four hours in this build.
+
+        The LiveKit intercom runs on our chapter server. Joining starts with your microphone off. Permission and a separate microphone action are required to speak. Leaving closes the audio session. Audio is not recorded by this installation. Voice leases last at most one hour and active membership is rechecked by the server. Headset, locked-screen and cellular behaviour require physical-device trials.
+
+        Ride Guardian escalation, SOS dispatch, automatic accident detection and confidential welfare services are not available in this build.
 
         Contact the chapter to correct your details, request deletion or discuss record retention. A server-verified sign-out revokes this device’s session.
 
-        Native SwiftUI review build 0.4.0. This build has not been released through the App Store.
+        Native SwiftUI review build 0.5.0. This build has not been released through the App Store.
         """, website: URL(string: "https://wsmba.the-grange.uk/contact/"))
   }
 }

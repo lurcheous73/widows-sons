@@ -6,6 +6,22 @@ struct ChapterHome: View {
   var body: some View {
     ChapterScroll(refresh: store.refresh) {
       ChapterHero { selection = .rides }
+      if store.feed?.chapter.features.membership != false {
+        ChapterCard {
+          VStack(alignment: .leading, spacing: 16) {
+            Eyebrow("Ride together. Stay connected.")
+            Text("The chapter, within reach.").font(Heritage.cardTitle).foregroundStyle(
+              Heritage.paper)
+            Text("Member messages, the intercom and your live ride, together in one place.")
+              .foregroundStyle(Heritage.muted)
+            Button {
+              selection = .comms
+            } label: {
+              Label("Open communications", systemImage: "bubble.left.and.bubble.right")
+            }.buttonStyle(BrassButtonStyle(outlined: true)).accessibilityIdentifier("home.comms")
+          }
+        }
+      }
       if store.feed?.chapter.features.news != false {
         VStack(spacing: 12) {
           SectionHeading(title: "From the chapter", actionTitle: "All news") { selection = .news }

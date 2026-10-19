@@ -47,6 +47,7 @@ struct NativeAppRoot: View {
 enum ChapterTab: String, CaseIterable, Identifiable {
   case chapter = "Chapter"
   case rides = "Rides"
+  case comms = "Comms"
   case news = "News"
   case member = "Member"
   var id: String { rawValue }
@@ -55,6 +56,7 @@ enum ChapterTab: String, CaseIterable, Identifiable {
     case .chapter: "house"
     case .rides: "point.topleft.down.to.point.bottomright.curvepath"
     case .news: "newspaper"
+    case .comms: "bubble.left.and.bubble.right"
     case .member: "person.text.rectangle"
     }
   }
@@ -65,6 +67,8 @@ enum ChapterRoute: Hashable {
   case event(ChapterEvent)
   case page(ChapterPage)
   case privacy, licences
+  case conversation(ConversationSummary)
+  case liveRide
 }
 
 struct ChapterShell: View {
@@ -80,6 +84,7 @@ struct ChapterShell: View {
       case .rides: features.events
       case .news: features.news
       case .member: features.membership
+      case .comms: features.membership
       }
     }
   }
@@ -111,6 +116,10 @@ struct ChapterShell: View {
           case .rides: RidesScreen(store: store)
           case .news: NewsScreen(store: store)
           case .member: MemberScreen(store: store)
+          case .comms:
+            if let community = store.community {
+              CommunicationsScreen(community: community) { selection = .member }
+            }
           }
         }.frame(maxHeight: .infinity)
       }
@@ -129,6 +138,12 @@ struct ChapterShell: View {
             website: page.url)
         case .privacy: PrivacyScreen()
         case .licences: LicencesScreen()
+        case .conversation(let conversation):
+          if let community = store.community {
+            ConversationScreen(conversation: conversation, community: community)
+          }
+        case .liveRide:
+          if let community = store.community { LiveRideScreen(community: community) }
         }
       }
       .onChange(of: tabs) { _, updated in

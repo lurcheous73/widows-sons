@@ -5,6 +5,11 @@
 and security boundaries described below. The Flutter build information records
 the earlier milestone; see `../ios-native/README.md` for current Xcode instructions.
 
+**0.5.0 communications update:** chapter/direct/ride messages, LiveKit audio and
+opt-in GPS are implemented. Apply `deploy/install-communications.py` after the
+mobile installation, and see `communications-build.md` for the NPM `/rtc` route,
+voice admission, private media ports and public-network acceptance work.
+
 The first Flutter client is implemented in `mobile/`, following the phased
 `LR-CONSULTATION.md` specification. This is a development milestone on the dedicated
 Canada VM20000. The website remains editable in WordPress and supplies the app's
@@ -77,7 +82,9 @@ Only public editorial data goes in preferences. A membership card requires an
 online profile check and displays its verification timestamp; it is not a paid-dues
 certificate, wallet pass or independently verifiable credential. No secret is
 encoded in a card or a QR code. API responses use `Cache-Control: no-store` and
-credentials are never placed in URLs. Authenticated route access logging is off.
+membership credentials are never placed in URLs. LiveKit's short-lived voice JWT
+uses its WebSocket protocol query/header; `/rtc` request/error logging is disabled
+at both proxies. Authenticated mobile route access logging is off.
 
 ## Test without affecting live members
 
@@ -89,7 +96,7 @@ sudo -u postgres createdb widowssons_mobile_test
 cd /srv/widows-sons/releases/<commit>/backend
 sudo -u postgres env \
   WIDOWS_SONS_MOBILE_TEST_DSN='dbname=widowssons_mobile_test user=postgres host=/var/run/postgresql' \
-  /srv/widows-sons/venv/bin/pytest -q -p no:cacheprovider test_mobile.py test_app.py
+  /srv/widows-sons/venv/bin/pytest -q -p no:cacheprovider test_mobile.py test_community.py test_app.py
 ```
 
 Run `deploy/verify-mobile.py` with the VM's Python environment as root for live HTTP

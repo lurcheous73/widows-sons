@@ -1,6 +1,8 @@
 # Ride Guardian: dual ride marshals
 
-Status: specification only; no live tracking or emergency alert functionality is implemented.
+Status: native 0.5.0 implements opt-in ride positions, a native map, check-ins and
+Home/Leave. Dual Guardian roles, incident escalation and emergency alerts remain
+specification only. See `communications-build.md` for the implemented boundaries.
 
 ## Roles
 Every organised ride can appoint two independent guardians:

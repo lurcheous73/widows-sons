@@ -81,7 +81,6 @@ struct ClubPostScreen: View {
               }
             }
           }
-          if thread.section?.canPost == true { composer }
         }
       } else {
         EmptyChapterCard(
@@ -89,6 +88,10 @@ struct ClubPostScreen: View {
           message: thread.error ?? "Section content needs a current online membership check.")
         Button("Try again") { Task { await thread.refresh() } }.buttonStyle(
           BrassButtonStyle(outlined: true))
+      }
+    }.safeAreaInset(edge: .bottom) {
+      if community.isVerified, thread.post?.removed == false, thread.section?.canPost == true {
+        composer.padding(.horizontal, 20).padding(.vertical, 12).background(Heritage.ink)
       }
     }.navigationTitle("Clubhouse conversation").clubNavigation()
       .toolbar {
@@ -168,16 +171,21 @@ struct ClubPostScreen: View {
     }
   }
   private var composer: some View {
-    VStack(alignment: .leading, spacing: 12) {
-      TextField("Add a comment", text: $thread.draft, axis: .vertical).lineLimit(2...6).padding(14)
-        .background(Heritage.panel, in: RoundedRectangle(cornerRadius: 12)).accessibilityIdentifier(
-          "section.comment.body")
-      Button(thread.busy ? "Sending…" : "Post comment", systemImage: "arrow.up.bubble") {
+    HStack(alignment: .bottom, spacing: 12) {
+      TextField("Add a comment", text: $thread.draft, axis: .vertical)
+        .lineLimit(1...4).padding(14)
+        .background(Heritage.panel, in: RoundedRectangle(cornerRadius: 12))
+        .accessibilityIdentifier("section.comment.body")
+      Button {
         Task { await thread.comment() }
-      }
-      .buttonStyle(BrassButtonStyle()).disabled(
-        thread.busy || ClubInput.text(thread.draft, limit: 2000) == nil
-      ).accessibilityIdentifier("section.comment.send")
+      } label: {
+        Image(systemName: thread.busy ? "hourglass" : "arrow.up")
+          .font(.headline).frame(width: 48, height: 48)
+          .foregroundStyle(Heritage.ink).background(Heritage.brass, in: Circle())
+      }.buttonStyle(.plain)
+        .disabled(thread.busy || ClubInput.text(thread.draft, limit: 2000) == nil)
+        .accessibilityLabel(thread.busy ? "Sending comment" : "Post comment")
+        .accessibilityIdentifier("section.comment.send")
     }
   }
   private func poll(_ post: ClubPost) -> some View {

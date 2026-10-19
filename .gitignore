@@ -8,3 +8,8 @@ build/
 *.log
 *.sqlite*
 .DS_Store
+.venv/
+credentials.json
+*.dump
+*.tar.gz
+*.tar.zst

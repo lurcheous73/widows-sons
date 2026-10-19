@@ -12,7 +12,8 @@ Open-source, self-hosted, brandable community platform. **Widows Sons L&R is the
 
 ## Repository layout
 - `backend/` – FastAPI initial service and tenant-specific configuration/events API
-- `admin/` – initial administrator portal prototype
+- `admin/` – original administrator portal prototype
+- `cms/` – custom WordPress block theme, chapter content tools and initial editable pages
 - `mobile/` – future Flutter client
 - `docs/` – architecture, roadmap and security constraints
 - `deploy/` – local development deployment
@@ -27,6 +28,17 @@ Open http://localhost:8088 for the demonstration administration interface, and h
 
 ## Branding
 Tenant identifiers and branding are server-side data, not compiled into app code. The demonstration comes with `lr` and `demo` organisations. Neither uses a third party's logo. Real marks must be supplied by their owners. One installation can host multiple independently configured groups without sharing private data.
+
+## Chapter website and CMS
+The L&R website has a custom WordPress block theme with visual page editing,
+news, rides/events, charity stories, photo albums and a private enquiry inbox.
+Chapter editors can publish content and edit the shared design without managing
+users, plugins or system settings. PostgreSQL holds the chapter application data;
+the WordPress database holds editorial content.
+
+See [VM20000 deployment](deploy/VM20000.md) and the
+[chapter editor guide](cms/EDITOR-GUIDE.md). The mobile client, member sign-in,
+intercom and Ride Guardian remain future work. Development mail delivery is disabled.
 
 ## Licence
 Licence selection is pending; do not assume the repository contents are licensed for unrestricted redistribution until a licence is added.

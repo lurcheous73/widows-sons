@@ -1,9 +1,10 @@
 """Read-only public PostgreSQL API. No personal member data exposed."""
+import os
 import psycopg
 from fastapi import APIRouter, HTTPException
 
 router = APIRouter(prefix="/api/v1/public", tags=["public"])
-DSN = "dbname=widowssons user=www-data host=/var/run/postgresql"
+DSN = os.environ.get("WIDOWS_SONS_DATABASE_DSN", "dbname=widowssons user=widowsapi host=/var/run/postgresql")
 
 @router.get("/{slug}/profile")
 def public_profile(slug: str):

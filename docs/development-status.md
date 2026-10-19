@@ -1,19 +1,18 @@
-# Working build status
+# Development status — 19 October 2026
 
-The repository contains **demonstration software only**, not a functioning membership or ride safety platform.
+## Running on the dedicated Canada development VM
+- Home CT1000 source and the PostgreSQL chapter database have been migrated to VM20000 (`can-widows-sons-dev`), with 8 vCPU, 16 GiB RAM and a 500 GiB disk.
+- The original FastAPI read-only prototype and PostgreSQL public chapter feeds run under a dedicated service account.
+- A custom WordPress block theme provides the public website, visual page editing, news, rides/events, charity stories, photo albums and private contact enquiries.
+- Chapter editors can publish content and edit the design without user, plugin or system administration rights.
+- A public CMS events feed exposes published upcoming events.
+- A dedicated NPM entry is configured for `wsmba.the-grange.uk`.
+- 27 integration checks and all five original backend tests passed.
 
-## Implemented
-- FastAPI read-only organisation metadata and example events.
-- Two separate demonstration organisation brands.
-- Static L&R public site, with a script fetching published events through a same-origin API proxy.
-- Separate static administration preview.
-- Docker Compose local-only bindings for API, site and admin.
-- Basic FastAPI regression tests (run manually with pytest).
+## Launch dependencies
+The owner is handling Cloudflare/public DNS. A covering certificate and enforced trusted HTTPS are pending that step. Editor sign-in must use trusted HTTPS. Search indexing and outbound email are disabled in development. Initial account emails use reserved `.invalid` placeholders.
 
-## Not implemented
-- Secure sign-in, PostgreSQL tenant separation, member records, real event editing and publication.
-- Shop checkout, email, fundraising provider integration, mobile apps, Ride Guardian, location tracking, messaging, helmet intercom, music audio control, and private welfare records.
+## Future application work
+The mobile apps, member sign-in, live membership administration, private-record tenant policies, messaging, payments, fundraising integrations, location tracking, Ride Guardian, helmet intercom, music control and private welfare services are not implemented. The database schema is a foundation; it does not establish that these features function.
 
-## Testing
-From `backend/`, install requirements and `pip install pytest httpx`; then run `python -m pytest -q`.
-For deployment testing, bring up Compose inside the designated development container once provisioned. Access the prototype from that CT's localhost only.
+See `deploy/VM20000.md` for operations and `cms/EDITOR-GUIDE.md` for chapter editing.

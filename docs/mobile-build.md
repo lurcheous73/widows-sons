@@ -1,5 +1,10 @@
 # Mobile review build — 19 October 2026
 
+**Native iOS update:** the active iOS implementation is now Swift 6 / SwiftUI in
+`ios-native/`, following the owner's requested stack change. It uses the same API
+and security boundaries described below. The Flutter build information records
+the earlier milestone; see `../ios-native/README.md` for current Xcode instructions.
+
 The first Flutter client is implemented in `mobile/`, following the phased
 `LR-CONSULTATION.md` specification. This is a development milestone on the dedicated
 Canada VM20000. The website remains editable in WordPress and supplies the app's

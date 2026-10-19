@@ -63,4 +63,9 @@ The feature review covers publicly accessible UK/US Widows Sons sites and compar
 ## Decision record
 All choices above are proposals awaiting chapter consultation. Record decisions, responsible officer, approval date, and requirements changes before live launch.
 
-**Current delivery status:** consultation and website prototype; no member database, live payments, riding safety service or public deployment.
+**Implementation decision, 19 October 2026:** the owner requested native SwiftUI
+for iOS using the proposed Heritage & Road design, with suitable GitHub open-source
+components where applicable. The shared self-hosted API and chapter CMS remain.
+This technical choice does not approve the consultation's membership, finance or
+welfare policies. Current implementation and outstanding work are recorded in
+`development-status.md` and `../ios-native/README.md`.

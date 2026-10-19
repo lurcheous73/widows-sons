@@ -4,6 +4,8 @@ configs:
   Release: release
   CarPlay-Debug: debug
   CarPlay-Release: release
+  Demo-Debug: debug
+  Demo-Release: release
 options:
   minimumXcodeGenVersion: 2.46.0
   deploymentTarget:
@@ -23,7 +25,7 @@ settings:
     SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
     SWIFT_APPROACHABLE_CONCURRENCY: NO
     IPHONEOS_DEPLOYMENT_TARGET: '17.0'
-    MARKETING_VERSION: 0.7.0
+    MARKETING_VERSION: 0.8.0
     CURRENT_PROJECT_VERSION: 1
     TARGETED_DEVICE_FAMILY: '1,2'
     CODE_SIGN_STYLE: Automatic
@@ -38,6 +40,10 @@ settings:
       WIDOWS_SONS_BASE_URL: http://localhost:19820
     CarPlay-Release:
       WIDOWS_SONS_BASE_URL: https://wsmba.the-grange.uk
+    Demo-Debug:
+      WIDOWS_SONS_BASE_URL: https://demo.widows-sons.invalid
+    Demo-Release:
+      WIDOWS_SONS_BASE_URL: https://demo.widows-sons.invalid
 targets:
   WidowsSons:
     type: application
@@ -67,6 +73,14 @@ targets:
         CarPlay-Release:
           INFOPLIST_FILE: Configuration/Info.plist
           CODE_SIGN_ENTITLEMENTS: Configuration/CarPlay.entitlements
+        Demo-Debug:
+          INFOPLIST_FILE: Configuration/Info-Demo.plist
+          CODE_SIGN_ENTITLEMENTS: Configuration/Demo.entitlements
+          PRODUCT_BUNDLE_IDENTIFIER: uk.brimstonecottage.WSMBA
+        Demo-Release:
+          INFOPLIST_FILE: Configuration/Info-Demo.plist
+          CODE_SIGN_ENTITLEMENTS: Configuration/Demo.entitlements
+          PRODUCT_BUNDLE_IDENTIFIER: uk.brimstonecottage.WSMBA
   WidowsSonsTests:
     type: bundle.unit-test
     platform: iOS
@@ -106,3 +120,29 @@ schemes:
         - WidowsSonsTests
     archive:
       config: CarPlay-Release
+  WidowsSons-Demo:
+    build:
+      targets:
+        WidowsSons: all
+        WidowsSonsTests: [test]
+    run:
+      config: Demo-Debug
+    test:
+      config: Debug
+      targets:
+        - WidowsSonsTests
+    archive:
+      config: Demo-Release
+  WSMBA:
+    build:
+      targets:
+        WidowsSons: all
+        WidowsSonsTests: [test]
+    run:
+      config: Demo-Debug
+    test:
+      config: Debug
+      targets:
+        - WidowsSonsTests
+    archive:
+      config: Demo-Release

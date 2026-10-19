@@ -216,21 +216,23 @@ struct RideOperationsScreen: View {
           Text(stop.name).font(.headline).foregroundStyle(Heritage.paper)
           if !stop.note.isEmpty { Text(stop.note).foregroundStyle(Heritage.muted) }
           if let latitude = stop.latitude, let longitude = stop.longitude {
-            Button("Directions in Maps") {
-              let item: MKMapItem
-              if #available(iOS 26.0, *) {
-                item = MKMapItem(
-                  location: CLLocation(latitude: latitude, longitude: longitude), address: nil)
-              } else {
-                item = MKMapItem(
-                  placemark: MKPlacemark(
-                    coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude)))
-              }
-              item.name = stop.name
-              item.openInMaps(launchOptions: [
-                MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving
-              ])
-            }.foregroundStyle(Heritage.brass).frame(minHeight: 44)
+            if !operations.community.isDemo {
+              Button("Directions in Maps") {
+                let item: MKMapItem
+                if #available(iOS 26.0, *) {
+                  item = MKMapItem(
+                    location: CLLocation(latitude: latitude, longitude: longitude), address: nil)
+                } else {
+                  item = MKMapItem(
+                    placemark: MKPlacemark(
+                      coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude)))
+                }
+                item.name = stop.name
+                item.openInMaps(launchOptions: [
+                  MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving
+                ])
+              }.foregroundStyle(Heritage.brass).frame(minHeight: 44)
+            }
           }
         }
       }

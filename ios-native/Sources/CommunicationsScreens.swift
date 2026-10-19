@@ -362,6 +362,9 @@ struct IntercomCard: View {
   let community: CommunityStore
   var eventID: String? = nil
   var body: some View {
+    if community.isDemo { DemoIntercomPreviewCard() } else { liveBody }
+  }
+  @ViewBuilder private var liveBody: some View {
     let voice = community.voice
     ChapterCard {
       VStack(alignment: .leading, spacing: 18) {

@@ -1,6 +1,13 @@
 # Widows Sons — Heritage & Road design brief
 
-Implementation brief 1.1 · 19 October 2026 · native iOS 0.7.0.
+Implementation brief 1.2 · 19 October 2026 · native iOS 0.8.0 demo.
+
+The owner now needs a product to demonstrate before further polishing. The
+separate **WSMBA Demo** uses these native interfaces with a populated fictional
+chapter, an always-available Demo tour and Reset. `product-demo.md` gives the
+presentation sequence and distinguishes simulated messaging/tracking/requests
+from connected intercom and CarPlay acceptance. The underlying live design and
+its outstanding production requirements remain as described below.
 
 This records the owner's Swift, self-hosting, communications, tracking, messaging
 and CarPlay instructions. The interface specification below is complete for the

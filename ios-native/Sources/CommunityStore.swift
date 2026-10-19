@@ -17,7 +17,8 @@ final class CommunityStore {
   private(set) var isRequestingVoice = false
   private(set) var duty: RideDuty?
   let rideOutbox: RideRequestOutbox
-  let location = RideLocationDriver()
+  let isDemo: Bool
+  let location: RideLocationDriver
   let voice = VoiceIntercom()
 
   @ObservationIgnored private let api: NativeChapterAPI
@@ -32,8 +33,10 @@ final class CommunityStore {
   @ObservationIgnored private var sharingID: UUID?
   @ObservationIgnored private var drafts: [String: String] = [:]
 
-  init(api: NativeChapterAPI, rideRequestStorage: RideRequestStorage? = nil) {
+  init(api: NativeChapterAPI, rideRequestStorage: RideRequestStorage? = nil, isDemo: Bool = false) {
     self.api = api
+    self.isDemo = isDemo
+    location = RideLocationDriver(isDemo: isDemo)
     rideOutbox = RideRequestOutbox(
       api: api,
       storage: rideRequestStorage
@@ -393,6 +396,11 @@ final class CommunityStore {
   }
 
   func joinVoice(eventID: String? = nil) async {
+    guard !isDemo else {
+      voice.showError(
+        "Live intercom uses the connected app. This demo offers a spoken briefing preview.")
+      return
+    }
     guard !voice.isBusy, !isRequestingVoice else { return }
     isRequestingVoice = true
     defer { isRequestingVoice = false }

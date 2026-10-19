@@ -10,7 +10,9 @@ struct LiveRideScreen: View {
     ChapterScroll(refresh: community.refreshRide) {
       ScreenHeading(
         eyebrow: "Together on the road", title: community.activeRide?.title ?? "Ride complete.",
-        message: "Check in with your group. You decide when your position is shared.")
+        message: community.isDemo
+          ? "Simulated riders on a sample route. Your real GPS is never captured."
+          : "Check in with your group. You decide when your position is shared.")
       if let ride = community.activeRide {
         if community.isVerified {
           NavigationLink(

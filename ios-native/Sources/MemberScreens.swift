@@ -296,6 +296,8 @@ struct PrivacyScreen: View {
 
         Member conversations and direct messages are held on the chapter server. Only the participants can open direct messages through the app. Messages use transport encryption on the production HTTPS service; this build does not claim end-to-end encrypted messaging. You can remove your own messages, block direct messages and save a report for chapter review. There are no push alerts or attachments yet.
 
+        Community Sections require a separate explicit join, invitation or approval. Section moderators can review members, reported posts and the section activity log. General chapter administration does not open private section content. Removed posts and comments leave a visible marker; their text is erased from live records. Ordinary polls show totals and your choice, with vote identities held on the server; they are not secret or binding ballots. Section content is never saved in the public offline cache, sent to Siri or shown on CarPlay. Leave removes access but does not erase your previous contributions or poll choice.
+
         Joining a live ride leaves location sharing off. You can opt in for that ride, with an iPhone permission prompt and a visible sharing control. Sharing can continue with the screen locked after you start it. Only active members who explicitly join the same ride can see positions. The server keeps one current fix, removes it on Stop, Home or Leave, and hides and purges fixes older than two minutes. No route history or home address is saved. A live ride session lasts up to four hours in this build.
 
         The LiveKit intercom runs on our chapter server. Joining starts with your microphone off. Permission and a separate microphone action are required to speak. Leaving closes the audio session. Audio is not recorded by this installation. Voice leases last at most one hour and active membership is rechecked by the server. Headset, locked-screen and cellular behaviour require physical-device trials.
@@ -308,7 +310,7 @@ struct PrivacyScreen: View {
 
         Contact the chapter to correct your details, request deletion or discuss record retention. A server-verified sign-out revokes this device’s session.
 
-        Native SwiftUI review build 0.6.0. This build has not been released through the App Store.
+        Native SwiftUI review build 0.7.0. This build has not been released through the App Store.
         """, website: URL(string: "https://wsmba.the-grange.uk/contact/"))
   }
 }

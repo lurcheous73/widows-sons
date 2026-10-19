@@ -1,6 +1,14 @@
-# Widows Sons — native SwiftUI iOS app
+# Native Swift iOS app — 0.7.0
 
-**Active iOS implementation: Swift 6 + SwiftUI.** Version 0.6.0, minimum iOS 17.
+The current build adds ordinary Community Sections under Comms: explicit joining,
+approval/invitations, discussions, announcements, comments, informal polls and
+section-scoped moderation. Read `../docs/community-sections-build.md` and the
+updated `../docs/design-brief.md`. The existing ride/intercom/CarPlay companion is
+retained. There are no additional third-party packages in this milestone.
+
+## Native platform and build
+
+**Active iOS implementation: Swift 6 + SwiftUI.** Version 0.7.0, minimum iOS 17.
 The owner requested native Swift on 19 October 2026. This supersedes the Flutter
 iOS prototype while retaining the same VM20000 API, database and WordPress CMS.
 The proposed Heritage & Road design supplies the charcoal, brass, off-white,

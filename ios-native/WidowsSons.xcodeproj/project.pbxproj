@@ -11,13 +11,16 @@
 		0E492E58222D9B2C46D80E74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E56976710776C570D77FCEF /* Assets.xcassets */; };
 		10E36D97192BF90114FBB526 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BAAD418DDFD6801FD60071 /* Fixtures.swift */; };
 		12D05C7688A3BA3C1C2B43DF /* RideOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8468742EF47403943CE0CDA /* RideOperationsTests.swift */; };
+		15216815038AA4E2E358C7C6 /* ClubhouseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C382102158739BCD7EBA4299 /* ClubhouseStore.swift */; };
 		1A3088842175693329982A0C /* ThirdPartyNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = B5A045F657BE274C000FB51C /* ThirdPartyNotices.txt */; };
 		210F8CA4CFE3F67FDA1A8C2B /* CommunityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854209975A06ECB9A3F9FB2F /* CommunityModels.swift */; };
 		211FB0A5375D2E015B59846F /* LiveRideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9FFC71665E145FFCFBD1D /* LiveRideScreen.swift */; };
+		2A67211D4FC043636E63456A /* ClubhouseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA2786B88EA2EFFD86E95A4 /* ClubhouseTests.swift */; };
 		2B79E19DD26C067E109F82A4 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F629DDB21385CAE3BB9968 /* Storage.swift */; };
 		2F4AF5C3D722A955764A5FBD /* ChapterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC1C7A403F7A68FCB832B22 /* ChapterStore.swift */; };
 		359A95A4BAFD4E24EC26C380 /* MemberScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B355EE212E49E9D82581BEDF /* MemberScreens.swift */; };
 		3B744F3A6976EB8712E9485B /* RideRouteTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F0AC1430FD0573F6EDAC0A /* RideRouteTools.swift */; };
+		3C1A4021802B452BBB89E0A2 /* ClubhouseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AEE5449258358056A37046 /* ClubhouseModels.swift */; };
 		52A0D68252AECC6FF3838E2B /* CommunityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F58DBE826B0FA14079E1FB /* CommunityTests.swift */; };
 		67BC7E4C9B47945CCA09BCD5 /* ChapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADBD7B1A81792604424193E /* ChapterTests.swift */; };
 		67CB18BE78AF9D4E7EB7E35B /* AppRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7099E1A7C9B0685A5B61EB1 /* AppRuntime.swift */; };
@@ -26,6 +29,9 @@
 		87D07F37AE64563AD6910D11 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F56590D34D4AEF7DF96A8F /* DesignSystem.swift */; };
 		95121714667A938517960190 /* RideOperationsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C86B6515CFE1A00FB2C176 /* RideOperationsScreen.swift */; };
 		95BD9F5E4C12269B233BAAF4 /* CarPlaySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA513E0B4538B91A8B96D678 /* CarPlaySceneDelegate.swift */; };
+		A39149505472EEB4A5CB0452 /* ClubhouseScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5190E93214A2162960E58B6 /* ClubhouseScreens.swift */; };
+		A8D622809B60F18ADD818F1B /* ClubhouseModerationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DBB4BF71A77CF990E98D9D /* ClubhouseModerationScreen.swift */; };
+		A9E0C7E9AFC69A4F5C01B171 /* ClubhousePostScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688B0C7078FD92F81345368D /* ClubhousePostScreen.swift */; };
 		AD5DCE4E23938B7219293164 /* VoiceIntercom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE9A9ED0AC5EB628B5119A /* VoiceIntercom.swift */; };
 		BF217521D9A1AA5D4C64357A /* CommunicationsScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F22F7F061D474791DF489 /* CommunicationsScreens.swift */; };
 		C13F3E3C07CBD737E6D6D77B /* ChapterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB431CD4D3F157D02011EFD /* ChapterAPI.swift */; };
@@ -57,6 +63,7 @@
 		0A3FD3977199179831DD1610 /* WidowsSonsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidowsSonsApp.swift; sourceTree = "<group>"; };
 		0EB431CD4D3F157D02011EFD /* ChapterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterAPI.swift; sourceTree = "<group>"; };
 		116C64302BCB9C69B9CCDF91 /* CommunityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityStore.swift; sourceTree = "<group>"; };
+		17AEE5449258358056A37046 /* ClubhouseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubhouseModels.swift; sourceTree = "<group>"; };
 		3E56976710776C570D77FCEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		420C4C73F847682B1BC3BBCB /* SiriMessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriMessageService.swift; sourceTree = "<group>"; };
 		44236585CC25146226BE0316 /* RideOperationsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideOperationsModels.swift; sourceTree = "<group>"; };
@@ -64,8 +71,11 @@
 		543F0CF1CCFF7520498F8379 /* RideRequestOutbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRequestOutbox.swift; sourceTree = "<group>"; };
 		5ADBD7B1A81792604424193E /* ChapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterTests.swift; sourceTree = "<group>"; };
 		5D46114706B0297ECF13F8D0 /* CommunicationIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationIntents.swift; sourceTree = "<group>"; };
+		5EA2786B88EA2EFFD86E95A4 /* ClubhouseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubhouseTests.swift; sourceTree = "<group>"; };
 		600C50D2C5A239F3B96BD0F8 /* WidowsSons.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = WidowsSons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A3D452EBF9D95720E1CC0A /* RideOperationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideOperationsStore.swift; sourceTree = "<group>"; };
+		688B0C7078FD92F81345368D /* ClubhousePostScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubhousePostScreen.swift; sourceTree = "<group>"; };
+		75DBB4BF71A77CF990E98D9D /* ClubhouseModerationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubhouseModerationScreen.swift; sourceTree = "<group>"; };
 		854209975A06ECB9A3F9FB2F /* CommunityModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityModels.swift; sourceTree = "<group>"; };
 		8C52E0136F811CB6EB9663ED /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		918ADFE113D2EF02EB7F11A4 /* WidowsSonsTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WidowsSonsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +87,7 @@
 		B8468742EF47403943CE0CDA /* RideOperationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideOperationsTests.swift; sourceTree = "<group>"; };
 		BAEE9A9ED0AC5EB628B5119A /* VoiceIntercom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceIntercom.swift; sourceTree = "<group>"; };
 		BE2E78C6CE0AEB3AA297EB32 /* IntercomCallCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntercomCallCoordinator.swift; sourceTree = "<group>"; };
+		C382102158739BCD7EBA4299 /* ClubhouseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubhouseStore.swift; sourceTree = "<group>"; };
 		C68FB3A3B58DF8A9BF0D2A9B /* RideLocationDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideLocationDriver.swift; sourceTree = "<group>"; };
 		D1F95A37718C3F72AF98D73B /* PublicScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicScreens.swift; sourceTree = "<group>"; };
 		D3F629DDB21385CAE3BB9968 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -85,6 +96,7 @@
 		F0B9FFC71665E145FFCFBD1D /* LiveRideScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveRideScreen.swift; sourceTree = "<group>"; };
 		F2BAAD418DDFD6801FD60071 /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		F4F56590D34D4AEF7DF96A8F /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		F5190E93214A2162960E58B6 /* ClubhouseScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubhouseScreens.swift; sourceTree = "<group>"; };
 		F7099E1A7C9B0685A5B61EB1 /* AppRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRuntime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				5ADBD7B1A81792604424193E /* ChapterTests.swift */,
+				5EA2786B88EA2EFFD86E95A4 /* ClubhouseTests.swift */,
 				04F58DBE826B0FA14079E1FB /* CommunityTests.swift */,
 				F2BAAD418DDFD6801FD60071 /* Fixtures.swift */,
 				B8468742EF47403943CE0CDA /* RideOperationsTests.swift */,
@@ -140,6 +153,11 @@
 				0EB431CD4D3F157D02011EFD /* ChapterAPI.swift */,
 				DAC1C7A403F7A68FCB832B22 /* ChapterStore.swift */,
 				E209D4D52F348ED862C6C829 /* ChatThread.swift */,
+				17AEE5449258358056A37046 /* ClubhouseModels.swift */,
+				75DBB4BF71A77CF990E98D9D /* ClubhouseModerationScreen.swift */,
+				688B0C7078FD92F81345368D /* ClubhousePostScreen.swift */,
+				F5190E93214A2162960E58B6 /* ClubhouseScreens.swift */,
+				C382102158739BCD7EBA4299 /* ClubhouseStore.swift */,
 				5D46114706B0297ECF13F8D0 /* CommunicationIntents.swift */,
 				B15F22F7F061D474791DF489 /* CommunicationsScreens.swift */,
 				854209975A06ECB9A3F9FB2F /* CommunityModels.swift */,
@@ -273,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67BC7E4C9B47945CCA09BCD5 /* ChapterTests.swift in Sources */,
+				2A67211D4FC043636E63456A /* ClubhouseTests.swift in Sources */,
 				52A0D68252AECC6FF3838E2B /* CommunityTests.swift in Sources */,
 				10E36D97192BF90114FBB526 /* Fixtures.swift in Sources */,
 				12D05C7688A3BA3C1C2B43DF /* RideOperationsTests.swift in Sources */,
@@ -288,6 +307,11 @@
 				C13F3E3C07CBD737E6D6D77B /* ChapterAPI.swift in Sources */,
 				2F4AF5C3D722A955764A5FBD /* ChapterStore.swift in Sources */,
 				C55B49712A8B907FF9DF86BC /* ChatThread.swift in Sources */,
+				3C1A4021802B452BBB89E0A2 /* ClubhouseModels.swift in Sources */,
+				A8D622809B60F18ADD818F1B /* ClubhouseModerationScreen.swift in Sources */,
+				A9E0C7E9AFC69A4F5C01B171 /* ClubhousePostScreen.swift in Sources */,
+				A39149505472EEB4A5CB0452 /* ClubhouseScreens.swift in Sources */,
+				15216815038AA4E2E358C7C6 /* ClubhouseStore.swift in Sources */,
 				D1A1461C5CD01CEB618F16BC /* CommunicationIntents.swift in Sources */,
 				BF217521D9A1AA5D4C64357A /* CommunicationsScreens.swift in Sources */,
 				210F8CA4CFE3F67FDA1A8C2B /* CommunityModels.swift in Sources */,
@@ -372,7 +396,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.6.0;
+				MARKETING_VERSION = 0.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -444,7 +468,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.6.0;
+				MARKETING_VERSION = 0.7.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -528,7 +552,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.6.0;
+				MARKETING_VERSION = 0.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -688,7 +712,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.6.0;
+				MARKETING_VERSION = 0.7.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

@@ -14,6 +14,21 @@ struct CommunicationsScreen: View {
         message: "A conversation before the ride. A familiar voice along the way.")
       if community.isVerified {
         IntercomCard(community: community)
+        NavigationLink(value: ChapterRoute.clubSections) {
+          ChapterCard {
+            HStack(spacing: 16) {
+              Image(systemName: "person.3.sequence").font(.title2).foregroundStyle(Heritage.brass)
+              VStack(alignment: .leading, spacing: 8) {
+                Eyebrow("The clubhouse")
+                Text("Community sections").font(Heritage.cardTitle).foregroundStyle(Heritage.paper)
+                Text("Conversations, announcements & chapter polls.").font(.subheadline)
+                  .foregroundStyle(Heritage.muted)
+              }
+              Spacer(minLength: 0)
+              Image(systemName: "chevron.right").foregroundStyle(Heritage.brass)
+            }
+          }
+        }.buttonStyle(.plain).accessibilityIdentifier("comms.sections")
         if let ride = community.activeRide {
           NavigationLink(value: ChapterRoute.liveRide) {
             ChapterCard {

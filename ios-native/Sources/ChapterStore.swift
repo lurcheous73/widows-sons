@@ -15,22 +15,28 @@ final class ChapterStore {
   @ObservationIgnored private let api: any ChapterAPI
   @ObservationIgnored private let sessions: any SessionStorage
   @ObservationIgnored private let cache: any FeedStorage
+  @ObservationIgnored let community: CommunityStore?
   @ObservationIgnored private var token: String?
   @ObservationIgnored private var didInitialize = false
   @ObservationIgnored private var verificationGeneration = 0
   @ObservationIgnored private var feedGeneration = 0
 
-  init(api: any ChapterAPI, sessions: any SessionStorage, cache: any FeedStorage) {
+  init(
+    api: any ChapterAPI, sessions: any SessionStorage, cache: any FeedStorage,
+    community: CommunityStore? = nil
+  ) {
     self.api = api
     self.sessions = sessions
     self.cache = cache
+    self.community = community
   }
 
   static func live(configuration: AppConfiguration) -> ChapterStore {
     ChapterStore(
       api: NativeChapterAPI(configuration: configuration),
       sessions: KeychainSessionStorage(namespace: configuration.storageNamespace),
-      cache: NativeFeedCache(namespace: configuration.storageNamespace))
+      cache: NativeFeedCache(namespace: configuration.storageNamespace),
+      community: CommunityStore(api: NativeChapterAPI(configuration: configuration)))
   }
 
   func loadOrRefresh() async {
@@ -85,14 +91,20 @@ final class ChapterStore {
       }
       member = updated
       memberError = nil
+      await community?.authenticate(member: updated, token: token)
+      if self.token != token || generation != verificationGeneration {
+        community?.suspendPrivateViews()
+      }
     } catch is CancellationError { return } catch {
       guard self.token == token, generation == verificationGeneration else { return }
       member = nil
+      community?.suspendPrivateViews()
       memberError = error.localizedDescription
       if let error = error as? APIError, error.requiresSignIn {
         self.token = nil
         isSignedIn = false
         try? await sessions.remove()
+        await community?.close()
       }
     }
   }
@@ -100,6 +112,7 @@ final class ChapterStore {
   func invalidateVerification() {
     verificationGeneration += 1
     member = nil
+    community?.suspendPrivateViews()
   }
 
   func activate(code: String) async {
@@ -129,6 +142,9 @@ final class ChapterStore {
       try await api.respond(token: token, eventID: event.id, response: response)
       guard self.token == token else { return nil }
       member?.rsvps[event.id] = response
+      if response != .going, community?.activeRide?.eventID == event.id {
+        await community?.endRide(home: false)
+      }
       return nil
     } catch {
       if let error = error as? APIError, error.requiresSignIn { await refreshMember() }
@@ -141,6 +157,7 @@ final class ChapterStore {
     isBusy = true
     defer { isBusy = false }
     do {
+      await community?.close()
       do { try await api.signOut(token: token) } catch let error as APIError
         where error.requiresSignIn
       { /* The server session has already ended. */  }

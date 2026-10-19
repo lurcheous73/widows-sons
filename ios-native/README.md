@@ -1,6 +1,6 @@
 # Widows Sons — native SwiftUI iOS app
 
-**Active iOS implementation: Swift 6 + SwiftUI.** Version 0.4.0, minimum iOS 17.
+**Active iOS implementation: Swift 6 + SwiftUI.** Version 0.5.0, minimum iOS 17.
 The owner requested native Swift on 19 October 2026. This supersedes the Flutter
 iOS prototype while retaining the same VM20000 API, database and WordPress CMS.
 The proposed Heritage & Road design supplies the charcoal, brass, off-white,
@@ -35,6 +35,13 @@ xcodebuild -project WidowsSons.xcodeproj -scheme WidowsSons \
 
 ## Native implementation
 
+Communications, messaging and opt-in ride tracking are the current priority.
+`CommunicationsScreens.swift`, `ChatThread.swift` and `CommunityStore.swift` provide
+chapter/direct/ride text messages, history, unread counts, retries, blocking and
+reports. `VoiceIntercom.swift` uses LiveKit for native chapter/ride audio rooms.
+`RideLocationDriver.swift` and `LiveRideScreen.swift` provide opt-in GPS, MapKit,
+fix ages, check-ins, Stop and Home.
+
 - `Sources/WidowsSonsApp.swift`: SwiftUI application, native navigation and chapter tabs.
 - `DesignSystem.swift`: Heritage & Road styling, Dynamic Type and reusable view components.
 - `PublicScreens.swift`: live news/search/articles, chapter information and ride lists.
@@ -53,6 +60,12 @@ suspension and RSVP permission checks remain enforced by the server.
 
 ## GitHub open source used
 
+[LiveKit Swift](https://github.com/livekit/client-sdk-swift), **2.18.0**,
+Apache-2.0, is pinned at revision `93a7251057bdb6a80a7b1f6d11464d578ebdc09b`.
+Its server runs on the dedicated VM. Complete SDK and binary-component notices
+are bundled. See `../docs/wsmba-open-source-research.md` for the WSMBA search and
+`../docs/communications-build.md` for deployment, validation and device trials.
+
 [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess), MIT licence,
 version **4.2.2**, is linked through Swift Package Manager. `Package.resolved` pins
 revision `84e546727d66f1adc5439debad16270d0fdd04e7`. Its copyright and full licence
@@ -69,10 +82,13 @@ implemented feature, have a suitable licence, and be pinned and acknowledged.
 Chapter home, live searchable news, article reading, public offline content,
 upcoming rides and details, invitation sign-in, online membership cards, RSVP
 responses and chapter information. WordPress updates feed both website and app.
-No Swift UI is implemented as a web wrapper.
+No Swift UI is implemented as a web wrapper. The app now also includes member
+messaging, self-hosted voice intercom and opt-in live ride maps.
 
-Member/admin approval screens, renewals, deletion self-service, notifications,
-chat, GPX/calendar features, payments, Ride Guardian, SOS, headset intercom and
-confidential welfare services remain later milestones. Existing service/API
+Member/admin approval screens, renewals, deletion self-service, push notifications,
+message attachments, GPX/calendar features, payments, Ride Guardian escalation,
+SOS, music controls and confidential welfare services remain later milestones.
+Physical helmet/cellular/locked-screen and battery trials remain acceptance work.
+Existing service/API
 operations and production requirements are in `../docs/mobile-build.md`.
 Android is a separate future platform decision following this native iOS switch.

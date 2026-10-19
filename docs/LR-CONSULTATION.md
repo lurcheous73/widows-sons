@@ -69,3 +69,8 @@ components where applicable. The shared self-hosted API and chapter CMS remain.
 This technical choice does not approve the consultation's membership, finance or
 welfare policies. Current implementation and outstanding work are recorded in
 `development-status.md` and `../ios-native/README.md`.
+
+**Priority update, 19 October 2026:** the owner prioritised communications,
+tracking and messaging. Native 0.5.0 implements the first private-review slice;
+see `communications-build.md`. Public-network/physical headset trials and the
+remaining Guardian, welfare and governance decisions are separate acceptance work.

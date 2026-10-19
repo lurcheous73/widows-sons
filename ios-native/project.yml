@@ -5,6 +5,9 @@ options:
     iOS: '17.0'
   createIntermediateGroups: true
 packages:
+  LiveKit:
+    url: https://github.com/livekit/client-sdk-swift.git
+    exactVersion: 2.18.0
   KeychainAccess:
     url: https://github.com/kishikawakatsumi/KeychainAccess.git
     exactVersion: 4.2.2
@@ -15,7 +18,7 @@ settings:
     SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
     SWIFT_APPROACHABLE_CONCURRENCY: NO
     IPHONEOS_DEPLOYMENT_TARGET: '17.0'
-    MARKETING_VERSION: 0.4.0
+    MARKETING_VERSION: 0.5.0
     CURRENT_PROJECT_VERSION: 1
     TARGETED_DEVICE_FAMILY: '1,2'
     CODE_SIGN_STYLE: Automatic
@@ -38,6 +41,7 @@ targets:
         buildPhase: resources
     dependencies:
       - package: KeychainAccess
+      - package: LiveKit
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: uk.thegrange.widowsSons

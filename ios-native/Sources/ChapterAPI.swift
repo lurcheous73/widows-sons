@@ -75,11 +75,17 @@ actor NativeChapterAPI: ChapterAPI {
     self.transport = transport
   }
 
-  func makeRequest(path: String, method: String = "GET", token: String? = nil, body: Data? = nil)
+  func makeRequest(
+    path: String, method: String = "GET", token: String? = nil, body: Data? = nil,
+    query: [URLQueryItem] = []
+  )
     -> URLRequest
   {
-    let url = configuration.baseURL.appending(
+    let base = configuration.baseURL.appending(
       path: "api/v1/mobile/\(configuration.chapterSlug)/\(path)")
+    var components = URLComponents(url: base, resolvingAgainstBaseURL: false)!
+    if !query.isEmpty { components.queryItems = query }
+    let url = components.url!
     var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
     request.httpMethod = method
     request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -91,12 +97,13 @@ actor NativeChapterAPI: ChapterAPI {
     return request
   }
 
-  private func request(
-    path: String, method: String = "GET", token: String? = nil, body: Data? = nil
+  func request(
+    path: String, method: String = "GET", token: String? = nil, body: Data? = nil,
+    query: [URLQueryItem] = []
   ) async throws -> Data {
     do {
       let payload = try await transport.send(
-        makeRequest(path: path, method: method, token: token, body: body))
+        makeRequest(path: path, method: method, token: token, body: body, query: query))
       try Task.checkCancellation()
       guard (200..<300).contains(payload.status) else {
         struct Failure: Decodable { let detail: String }
@@ -112,7 +119,7 @@ actor NativeChapterAPI: ChapterAPI {
     { throw APIError.unavailable }
   }
 
-  private func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
+  func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
     do { return try APICoding.decoder().decode(type, from: data) } catch {
       throw APIError.invalidResponse
     }

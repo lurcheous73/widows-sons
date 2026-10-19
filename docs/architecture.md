@@ -11,7 +11,7 @@ Group-level admins cannot manage another group. Cross-organisation access must b
   The earlier Flutter implementation remains as a reference in `mobile/`.
 - FastAPI backend, PostgreSQL and a job queue.
 - Responsive administrator portal with MFA and fine-grained RBAC.
-- Push: APNs / FCM; messaging via proven E2EE protocol; calls via Jitsi/WebRTC.
+- Current private-review messages are chapter-server text conversations with active-member/participant checks. LiveKit provides WebRTC audio. A proven E2EE messaging protocol and APNs/FCM push remain future choices; this build does not claim E2EE.
 - Helmet Bluetooth is audio I/O; inter-rider transport is mobile data, not arbitrary long-range Bluetooth.
 - GPX routes, calendar invitation export, emails via each organisation's own mail integration.
 
@@ -21,7 +21,8 @@ Store accurate location timestamps, show last-known status, and distinguish sile
 Never claim SOS contacted emergency services unless a call was actually placed.
 Sensor-based crash detection requires extensive validation and must not be marketed as guaranteed protection.
 Members must be able to end a ride, revoke sharing and manage retention.
-Initial prototype DOES NOT track locations or implement incident detection.
+Native 0.5.0 implements opt-in, time-limited ride positions and check-ins; incident
+detection and Guardian escalation remain unimplemented. See `communications-build.md`.
 
 ## Before production
 Implement OIDC/authentication, MFA for admins, authorization tests, audit logs, migrations, backups, restore drills, TLS, monitored uptime, GDPR processing documentation, privacy defaults, abuse controls and threat modelling.

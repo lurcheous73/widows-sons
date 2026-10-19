@@ -43,8 +43,10 @@ the WordPress database holds editorial content.
 See [VM20000 deployment](deploy/VM20000.md), the
 [chapter editor guide](cms/EDITOR-GUIDE.md) and the
 [native iOS build](ios-native/README.md). The native app reads the CMS, provides
-invitation sign-in, online membership cards and ride RSVPs. Chapter approval/admin
-screens, intercom and Ride Guardian remain future work. Development mail delivery
+invitation sign-in, member cards, ride RSVPs, chapter/direct/ride messaging,
+self-hosted intercom and opt-in live ride maps. See the
+[communications build](docs/communications-build.md) for current scope and trials.
+Chapter approval/admin screens and Ride Guardian escalation remain future work. Development mail delivery
 is disabled. Public DNS/trusted HTTPS and signed iPhone distribution are pending.
 
 ## Licence

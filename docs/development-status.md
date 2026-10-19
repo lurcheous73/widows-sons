@@ -1,5 +1,12 @@
 # Development status — 19 October 2026
 
+## Communications priority — native 0.5.0
+- The owner prioritised communications, tracking and messaging. The native app now has chapter/direct/ride conversations, server-confirmed text sending, history, unread counts, blocking and reports.
+- LiveKit Swift 2.18.0 and self-hosted LiveKit server 1.13.10 provide audio rooms, muted joins, microphone controls and participant state. Private Nginx admission checks and a maintenance sweep enforce voice leases and revoked sign-ins.
+- Explicit live-ride join and separate GPS consent provide MapKit positions, fix-age/accuracy labels, check-ins, Stop, Leave and Home. Expired coordinates are removed and delayed uploads cannot restart stopped sharing.
+- All 31 server tests and 29 native tests passed. Deployed checks verified native message persistence, private-room isolation, simulated GPS and coordinate removal. Two WebRTC clients exchanged synthetic audio; participant revocation and refused reconnection were verified.
+- The WSMBA source search found GPL WordPress projects but no suitable native communications/tracking component. See `communications-build.md` and `wsmba-open-source-research.md` for scope, licence evidence and remaining acceptance work.
+
 ## Active native iOS build
 - Following the owner's request, the active iOS client is now Swift 6 / SwiftUI in `ios-native/`, using the proposed Heritage & Road design.
 - Native URLSession networking, structured refresh tasks, device-only Apple Keychain storage, file-based public caching and online member verification use the existing VM20000 API.
@@ -24,7 +31,7 @@
 The owner is handling Cloudflare/public DNS. A covering certificate and enforced trusted HTTPS are pending that step. Editor sign-in must use trusted HTTPS. Search indexing and outbound email are disabled in development. Initial account emails use reserved `.invalid` placeholders.
 
 ## Remaining application work
-The first app milestone is for private chapter review. Membership is provisioned by an operator CLI; member/admin approval screens, renewal workflows, deletion self-service, push notifications, messaging, GPX/calendar export, payments, fundraising integrations, location tracking, Ride Guardian, helmet intercom, music control and confidential welfare services remain unimplemented. Android platform validation and signed iPhone/TestFlight distribution are still pending. The invitation/session foundation does not establish that the rest of the specification functions.
+This build is for private chapter review. Membership is provisioned by an operator CLI; member/admin approval screens, renewals, deletion self-service, push notifications, attachments, GPX/calendar export, payments, fundraising, Ride Guardian escalation, music controls and confidential welfare remain unimplemented. Messaging, opt-in tracking and voice rooms are implemented in native 0.5.0. Physical helmet/cellular/locked-screen and battery trials, public media deployment, Android validation and signed iPhone/TestFlight distribution are pending.
 
 See `deploy/VM20000.md` for operations and `cms/EDITOR-GUIDE.md` for chapter editing.
 See `docs/mobile-build.md` and `mobile/README.md` for mobile operations and simulator setup.

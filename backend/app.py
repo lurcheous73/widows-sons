@@ -71,3 +71,6 @@ def events(slug: str):
     if slug not in ORGANISATIONS:
         raise HTTPException(status_code=404, detail="Organisation not found")
     return {"organisation": slug, "events": EXAMPLE_EVENTS[slug]}
+
+from public_api import router as public_router
+app.include_router(public_router)

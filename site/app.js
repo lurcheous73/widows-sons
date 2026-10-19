@@ -1,5 +1,5 @@
 "use strict";
-const API = "/api/v1/organisations/lr";
+const API = "/api/v1/public/lr";
 const eventNode = document.getElementById("public-events");
 async function loadPublicEvents() {
   if (!eventNode) return;

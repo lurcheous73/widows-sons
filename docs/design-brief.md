@@ -3,7 +3,7 @@
 Implementation brief 1.2 · 19 October 2026 · native iOS 0.8.0 demo.
 
 The owner now needs a product to demonstrate before further polishing. The
-separate **WS L&R Demo** uses these native interfaces with a populated fictional
+separate **WSMBA Demo** uses these native interfaces with a populated fictional
 chapter, an always-available Demo tour and Reset. `product-demo.md` gives the
 presentation sequence and distinguishes simulated messaging/tracking/requests
 from connected intercom and CarPlay acceptance. The underlying live design and

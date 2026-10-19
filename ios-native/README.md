@@ -6,8 +6,8 @@ It opens as a fictional member, needs no invitation or chapter service, and uses
 the same native screens and Heritage & Road design as the connected app. Read
 `../docs/product-demo.md` for the walkthrough, installation and exact boundaries.
 
-Run **WidowsSons-Demo** for a demonstration. Run **WidowsSons** for the connected
-VM20000 client. The separate `uk.thegrange.widowsSons.demo` bundle can be installed
+Run **WSMBA** for a demonstration. Run **WidowsSons** for the connected
+VM20000 client. The separate `uk.brimstonecottage.WSMBA` bundle can be installed
 alongside the connected app. Demo configuration uses a reserved `.invalid` origin
 and an in-process transport that cannot contact the live chapter.
 

@@ -1,4 +1,4 @@
-# WS L&R Demo — 0.8.0
+# WSMBA Demo — 0.8.0
 
 The owner requested a product to demonstrate, followed by polish. This is a
 native Swift 6 / SwiftUI application using the proposed Heritage & Road design
@@ -6,7 +6,7 @@ and the same screen implementations as the connected Widows Sons app.
 
 ## Start
 
-Open **WS L&R Demo**. It opens as **Alex · demo member** without an invitation.
+Open **WSMBA Demo**. It opens as **Alex · demo member** without an invitation.
 Tap **Demo tour** at the top to jump into any of the seven journeys. The reset
 icon returns all sample records to their starting state; confirm **Reset demo**.
 Closing and relaunching the process also creates fresh sample content.
@@ -40,14 +40,22 @@ For audio, open Comms or the live ride and tap **Play briefing preview**. This
 speaks a sample briefing through the device's selected audio output. It is
 explicitly labelled as an audio preview and is not a live intercom call.
 
+## WSMBA identity
+
+The registered WSMBA record was verified in App Store Connect. The **WSMBA**
+scheme uses its exact bundle ID, `uk.brimstonecottage.WSMBA`, and the demo
+configuration. **WidowsSons-Demo** remains a compatible alias. This is demo
+version 0.8.0 (1); the App Store listing is a separate 1.0 draft. No build has
+been uploaded to TestFlight or submitted for review in this milestone.
+
 ## Build and installation
 
-Open `ios-native/WidowsSons.xcodeproj` in Xcode, select **WidowsSons-Demo** and
+Open `ios-native/WidowsSons.xcodeproj` in Xcode, select **WSMBA** and
 Run on an iOS 17+ Simulator or an appropriately provisioned physical iPhone.
 The checked-in project includes the scheme. XcodeGen 2.46.0 can regenerate it
 from `project.yml`. Dependencies remain pinned and their notices are bundled.
 
-- Demo-Debug / Demo-Release: `uk.thegrange.widowsSons.demo`, **WS L&R Demo**.
+- Demo-Debug / Demo-Release: `uk.brimstonecottage.WSMBA`, **WSMBA Demo**.
 - Debug / Release: the existing connected app and VM20000 configuration.
 - CarPlay-Debug / CarPlay-Release: connected communication-category companion.
 

@@ -3,7 +3,7 @@
 ## Presentation product — native 0.8.0
 
 - Following the owner's request for a product to demonstrate before polishing,
-  added a separate **WS L&R Demo** app using the existing native SwiftUI screens.
+  added a separate **WSMBA Demo** app using the existing native SwiftUI screens.
 - Seven guided journeys cover chapter/news, ride planning and RSVPs, messaging,
   simulated rider positions, a Guardian help scenario, community sections/polls
   and a sample member card. Reset restores the fictional chapter.

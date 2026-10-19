@@ -76,11 +76,11 @@ targets:
         Demo-Debug:
           INFOPLIST_FILE: Configuration/Info-Demo.plist
           CODE_SIGN_ENTITLEMENTS: Configuration/Demo.entitlements
-          PRODUCT_BUNDLE_IDENTIFIER: uk.thegrange.widowsSons.demo
+          PRODUCT_BUNDLE_IDENTIFIER: uk.brimstonecottage.WSMBA
         Demo-Release:
           INFOPLIST_FILE: Configuration/Info-Demo.plist
           CODE_SIGN_ENTITLEMENTS: Configuration/Demo.entitlements
-          PRODUCT_BUNDLE_IDENTIFIER: uk.thegrange.widowsSons.demo
+          PRODUCT_BUNDLE_IDENTIFIER: uk.brimstonecottage.WSMBA
   WidowsSonsTests:
     type: bundle.unit-test
     platform: iOS
@@ -121,6 +121,19 @@ schemes:
     archive:
       config: CarPlay-Release
   WidowsSons-Demo:
+    build:
+      targets:
+        WidowsSons: all
+        WidowsSonsTests: [test]
+    run:
+      config: Demo-Debug
+    test:
+      config: Debug
+      targets:
+        - WidowsSonsTests
+    archive:
+      config: Demo-Release
+  WSMBA:
     build:
       targets:
         WidowsSons: all

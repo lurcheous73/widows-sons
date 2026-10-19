@@ -14,7 +14,9 @@ actor KeychainSessionStorage: SessionStorage {
 
   init(namespace: String) {
     keychain = Keychain(service: "uk.thegrange.widowsSons.native")
-      .accessibility(.whenUnlockedThisDeviceOnly)
+      // Siri/CarPlay can authenticate while the paired phone is locked, after
+      // its first unlock since reboot. The secret remains device-only.
+      .accessibility(.afterFirstUnlockThisDeviceOnly)
       .synchronizable(false)
     key = namespace + ".session.v1"
   }

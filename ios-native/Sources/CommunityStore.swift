@@ -15,6 +15,8 @@ final class CommunityStore {
   private(set) var isRemovingPosition = false
   private(set) var isSharingRequested = false
   private(set) var isRequestingVoice = false
+  private(set) var duty: RideDuty?
+  let rideOutbox: RideRequestOutbox
   let location = RideLocationDriver()
   let voice = VoiceIntercom()
 
@@ -30,8 +32,12 @@ final class CommunityStore {
   @ObservationIgnored private var sharingID: UUID?
   @ObservationIgnored private var drafts: [String: String] = [:]
 
-  init(api: NativeChapterAPI) {
+  init(api: NativeChapterAPI, rideRequestStorage: RideRequestStorage? = nil) {
     self.api = api
+    rideOutbox = RideRequestOutbox(
+      api: api,
+      storage: rideRequestStorage
+        ?? RideRequestStorage(namespace: api.configuration.storageNamespace))
     location.onFix = { [weak self] fix in self?.enqueue(fix) }
   }
 
@@ -41,6 +47,7 @@ final class CommunityStore {
     self.access = updated
     memberID = member.id
     isVerified = true
+    await rideOutbox.authenticate(updated)
   }
 
   func suspendPrivateViews() {
@@ -50,6 +57,8 @@ final class CommunityStore {
     people = []
     snapshot = nil
     drafts = [:]
+    duty = nil
+    rideOutbox.suspend()
   }
 
   func close() async {
@@ -73,6 +82,7 @@ final class CommunityStore {
     suspendPrivateViews()
     error = nil
     await voice.leave()
+    await rideOutbox.close()
     if let previousAccess {
       if let previousRide {
         let body = try? JSONEncoder().encode(["state": "left"])
@@ -141,6 +151,16 @@ final class CommunityStore {
       people = updated.members
       error = nil
     } catch { self.error = error.localizedDescription }
+  }
+
+  func refreshDuty() async {
+    guard isVerified else { return }
+    do {
+      let updated = try await decoded(RideDuty.self, path: "ride-duty")
+      guard isVerified else { return }
+      duty = updated
+      await rideOutbox.flush()
+    } catch is CancellationError { return } catch { duty = nil }
   }
 
   func direct(to person: ChapterPerson) async throws -> ConversationSummary {
@@ -326,14 +346,19 @@ final class CommunityStore {
     }
   }
 
-  func checkIn() async {
-    guard let ride = activeRide else { return }
+  @discardableResult
+  func checkIn() async -> Bool {
+    guard let ride = activeRide else { return false }
     do {
       _ = try await request(
         path: "rides/\(ride.eventID)/check-in", method: "POST", activeService: true)
       rideNotice = "Check-in delivered to the ride."
       await refreshRide()
-    } catch { rideNotice = error.localizedDescription }
+      return true
+    } catch {
+      rideNotice = error.localizedDescription
+      return false
+    }
   }
 
   func endRide(home: Bool) async {

@@ -25,6 +25,7 @@ def database(monkeypatch):
         db.execute(Path(__file__).with_name('schema.sql').read_text())
         db.execute(Path(__file__).with_name('mobile_schema.sql').read_text())
         db.execute(Path(__file__).with_name('community_schema.sql').read_text())
+        db.execute(Path(__file__).with_name('ride_schema.sql').read_text())
         db.execute("INSERT INTO organisations(slug,name,display_name) VALUES('other','Other chapter','Other')")
     def cms(path):
         if path == '/wp-json/wp/v2/ws_event/42':
@@ -65,7 +66,7 @@ def test_public_feed_has_real_shape_and_no_members():
     assert body['news'][0]['title'] == 'News & rides'
     assert body['news'][0]['body'] == 'First\n\nSecond'
     assert 'members' not in body
-    assert body['chapter']['features']['guardian'] is False
+    assert body['chapter']['features']['guardian'] is True
     assert result.headers['cache-control'] == 'no-store'
 
 

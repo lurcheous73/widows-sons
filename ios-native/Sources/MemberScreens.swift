@@ -171,6 +171,7 @@ struct EventScreen: View {
   let store: ChapterStore
   @State private var notice: String?
   @State private var conversation: ConversationSummary?
+  @State private var calendarPresented = false
   var body: some View {
     ChapterScroll(refresh: store.refresh) {
       Eyebrow("Ride together")
@@ -180,6 +181,10 @@ struct EventScreen: View {
       if !event.location.isEmpty {
         Label(event.location, systemImage: "mappin.and.ellipse").foregroundStyle(Heritage.muted)
       }
+      Button("Add to my calendar") { calendarPresented = true }.buttonStyle(
+        BrassButtonStyle(outlined: true)
+      )
+      .accessibilityIdentifier("ride.calendar")
       Text(event.description).foregroundStyle(Heritage.paper).lineSpacing(6).textSelection(.enabled)
       ChapterCard {
         VStack(alignment: .leading, spacing: 16) {
@@ -208,6 +213,9 @@ struct EventScreen: View {
         }
       }
       if let community = store.community, community.isVerified {
+        NavigationLink(value: ChapterRoute.rideOperations(eventID: event.id, title: event.title)) {
+          Label("Ride briefing, Guardians & help", systemImage: "checkmark.shield")
+        }.buttonStyle(BrassButtonStyle(outlined: true)).accessibilityIdentifier("ride.briefing")
         ChapterCard {
           VStack(alignment: .leading, spacing: 16) {
             Text("Keep the ride together.").font(Heritage.cardTitle).foregroundStyle(Heritage.paper)
@@ -247,6 +255,9 @@ struct EventScreen: View {
         .buttonStyle(BrassButtonStyle(outlined: true))
       }
     }.navigationTitle("Ride details").navigationBarTitleDisplayMode(.inline)
+      .sheet(isPresented: $calendarPresented) {
+        RideCalendarEditor(event: event) { calendarPresented = false }
+      }
       .navigationDestination(item: $conversation) { value in
         if let community = store.community {
           ConversationScreen(conversation: value, community: community)
@@ -279,7 +290,7 @@ struct PrivacyScreen: View {
       bodyText: """
         Public news and ride details are saved on this device for offline reading. Saved information can be out of date; pull down to refresh it.
 
-        Your sign-in secret is kept in Apple Keychain, on this device, while it is unlocked. Your member card and RSVP record are checked with the chapter server and are not stored in the public offline cache.
+        Your sign-in secret is kept in Apple Keychain on this device only. After the first unlock following a restart, Siri and CarPlay can use it while the phone is locked. Your member card and RSVP record are checked with the chapter server and are not stored in the public offline cache.
 
         The chapter holds the name, email and membership details used to issue your invitation, your ride responses and an audit of account actions. This app provides access to your own membership and responses.
 
@@ -289,11 +300,15 @@ struct PrivacyScreen: View {
 
         The LiveKit intercom runs on our chapter server. Joining starts with your microphone off. Permission and a separate microphone action are required to speak. Leaving closes the audio session. Audio is not recorded by this installation. Voice leases last at most one hour and active membership is rechecked by the server. Headset, locked-screen and cellular behaviour require physical-device trials.
 
-        Ride Guardian escalation, SOS dispatch, automatic accident detection and confidential welfare services are not available in this build.
+        Road Captain, Sweep and responder access is scoped to a specific ride and must be accepted. Help requests and SOS requests are saved on the chapter server; each Guardian acknowledges independently. A request received by the server does not mean a person has responded. Unsent requests are kept in a separate protected, backup-excluded queue on this iPhone and are cleared on sign-out. Requests over 15 minutes old need a fresh confirmation and are never sent automatically. No coordinates or sign-in secrets are saved in that queue.
+
+        Home creates a safe-arrival receipt without a home address. Guardians see check-ins, arrivals and an incident history. They cannot turn lost signal into an accident report or close a ride while riders or requests remain unresolved. This app does not call emergency services automatically. Confidential welfare services remain separate and unavailable in this build.
+
+        CarPlay uses Apple's communication templates and Siri for messages, with CallKit handling audio on physical phones. CarPlay entitlement approval and physical headset trials are still required before distribution. Microphone publication is always a separate action; push-to-talk and a 30-second CarPlay speech limit are provided. Music ducking follows the iPhone's audio system and cannot promise a fixed volume reduction on every headset.
 
         Contact the chapter to correct your details, request deletion or discuss record retention. A server-verified sign-out revokes this device’s session.
 
-        Native SwiftUI review build 0.5.0. This build has not been released through the App Store.
+        Native SwiftUI review build 0.6.0. This build has not been released through the App Store.
         """, website: URL(string: "https://wsmba.the-grange.uk/contact/"))
   }
 }

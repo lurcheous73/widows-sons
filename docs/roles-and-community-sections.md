@@ -1,6 +1,8 @@
 # Road roles, administration, and community sections
 
-Status: design specification; not yet implemented.
+Status: native 0.6.0 implements event-scoped organiser delegation and accepted
+road roles with an audited handover. Community Sections and the wider chapter
+administration hierarchy remain design requirements. See `ride-operations-build.md`.
 
 ## Separation of responsibilities
 

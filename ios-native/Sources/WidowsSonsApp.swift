@@ -2,13 +2,12 @@ import SwiftUI
 
 @main
 struct WidowsSonsApp: App {
-  private let configuration: Result<AppConfiguration, Error>
-  init() { configuration = Result { try AppConfiguration.bundled() } }
+  @UIApplicationDelegateAdaptor(CommunicationAppDelegate.self) private var appDelegate
   var body: some Scene {
     WindowGroup {
-      switch configuration {
-      case .success(let configuration): NativeAppRoot(configuration: configuration)
-      case .failure:
+      if let store = AppRuntime.shared.store {
+        NativeAppRoot(store: store)
+      } else {
         ContentUnavailableView(
           "Chapter connection unavailable", systemImage: "network.slash",
           description: Text("Check the app connection settings before running this build."))
@@ -21,17 +20,16 @@ struct NativeAppRoot: View {
   @Environment(\.scenePhase) private var scenePhase
   @State private var store: ChapterStore
 
-  init(configuration: AppConfiguration) {
-    self.store = ChapterStore.live(configuration: configuration)
-  }
+  init(store: ChapterStore) { self.store = store }
   var body: some View {
     ChapterShell(store: store)
       .preferredColorScheme(.dark).tint(Heritage.brass)
-      .task(id: scenePhase) {
+      .onContinueUserActivity("INStartCallIntent") { CommunicationAppDelegate.continueCall($0) }
+      .task(id: "\(scenePhase)-\(VehicleConnection.shared.connected)") {
         if scenePhase == .active {
           await store.loadOrRefresh()
         } else {
-          store.invalidateVerification()
+          store.invalidateVerification(keepingVehicleServices: VehicleConnection.shared.connected)
         }
       }
       .overlay {
@@ -69,6 +67,7 @@ enum ChapterRoute: Hashable {
   case privacy, licences
   case conversation(ConversationSummary)
   case liveRide
+  case rideOperations(eventID: String, title: String, initialTab: RideDetailTab = .briefing)
 }
 
 struct ChapterShell: View {
@@ -98,6 +97,26 @@ struct ChapterShell: View {
           }
         }
         if store.isLoading { ProgressView().tint(Heritage.brass).padding(.bottom, 8) }
+        if let community = store.community, community.isVerified,
+          let alert = community.duty?.alerts.first
+        {
+          NavigationLink(
+            value: ChapterRoute.rideOperations(
+              eventID: alert.eventID,
+              title: store.feed?.events.first { $0.id == alert.eventID }?.title
+                ?? "Ride Guardian requests", initialTab: .requests)
+          ) {
+            Label(
+              alert.kind == "sos" ? "SOS request · open ride log" : "Ride check-in / help request",
+              systemImage: "exclamationmark.bubble"
+            )
+            .font(.subheadline.weight(.semibold)).foregroundStyle(
+              alert.kind == "sos" ? .red : Heritage.brass
+            )
+            .frame(maxWidth: .infinity, minHeight: 48).padding(.horizontal, 20).background(
+              Heritage.panel)
+          }.buttonStyle(.plain).accessibilityIdentifier("guardian.alertBanner")
+        }
         if store.isReadingSavedContent, let date = store.feed?.updatedAt {
           HStack {
             Image(systemName: "wifi.slash").accessibilityHidden(true)
@@ -144,10 +163,22 @@ struct ChapterShell: View {
           }
         case .liveRide:
           if let community = store.community { LiveRideScreen(community: community) }
+        case .rideOperations(let eventID, let title, let initialTab):
+          if let community = store.community {
+            RideOperationsScreen(
+              eventID: eventID, title: title, community: community, initialTab: initialTab)
+          }
         }
       }
       .onChange(of: tabs) { _, updated in
         if !updated.contains(selection) { selection = .chapter }
+      }
+      .task(id: store.community?.isVerified) {
+        guard let community = store.community, community.isVerified else { return }
+        while !Task.isCancelled, community.isVerified {
+          await community.refreshDuty()
+          do { try await Task.sleep(for: .seconds(10)) } catch { return }
+        }
       }
     }
     .background(Heritage.ink)

@@ -44,7 +44,9 @@ final class ChapterStore {
       do {
         feed = try await cache.read()
         isReadingSavedContent = feed != nil
-      } catch { /* A damaged public cache is replaced on a successful fetch. */  }
+      } catch {
+        // A damaged public cache is replaced on a successful fetch.
+      }
       do {
         token = try await sessions.read()
         isSignedIn = token != nil
@@ -109,10 +111,10 @@ final class ChapterStore {
     }
   }
 
-  func invalidateVerification() {
+  func invalidateVerification(keepingVehicleServices: Bool = false) {
     verificationGeneration += 1
     member = nil
-    community?.suspendPrivateViews()
+    if !keepingVehicleServices { community?.suspendPrivateViews() }
   }
 
   func activate(code: String) async {
@@ -160,7 +162,9 @@ final class ChapterStore {
       await community?.close()
       do { try await api.signOut(token: token) } catch let error as APIError
         where error.requiresSignIn
-      { /* The server session has already ended. */  }
+      {
+        // The server session has already ended.
+      }
       invalidateVerification()
       try await sessions.remove()
       self.token = nil

@@ -144,6 +144,20 @@ struct RidesScreen: View {
         eyebrow: "The road ahead", title: "Rides & events.",
         message: "Find a ride, make a plan and let the chapter know you’re coming.")
       if store.member != nil {
+        if let community = store.community, let duties = community.duty?.events, !duties.isEmpty {
+          ForEach(duties, id: \.self) { eventID in
+            NavigationLink(
+              value: ChapterRoute.rideOperations(
+                eventID: eventID,
+                title: store.feed?.events.first { $0.id == eventID }?.title ?? "Your ride duty")
+            ) {
+              ChapterCard {
+                Label("Your Guardian invitation / ride duty", systemImage: "checkmark.shield")
+                  .foregroundStyle(Heritage.brass)
+              }
+            }.buttonStyle(.plain)
+          }
+        }
         Picker("Rides", selection: $onlyMyRides) {
           Text("Upcoming").tag(false)
           Text("My rides").tag(true)

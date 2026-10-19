@@ -74,3 +74,10 @@ welfare policies. Current implementation and outstanding work are recorded in
 tracking and messaging. Native 0.5.0 implements the first private-review slice;
 see `communications-build.md`. Public-network/physical headset trials and the
 remaining Guardian, welfare and governance decisions are separate acceptance work.
+
+**Continuation and CarPlay, 19 October 2026:** the owner requested further build
+work against this specification and a CarPlay companion, deferring the two-iPhone
+field trial until the design brief is complete. Native 0.6.0 implements the next
+ride-operations milestone. `design-brief.md` records the current phone/CarPlay
+journeys and states; `ride-operations-build.md` records actual implementation,
+Apple entitlement/distribution requirements and remaining acceptance work.

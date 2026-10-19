@@ -21,13 +21,30 @@ final class VoiceIntercom: NSObject, RoomDelegate {
   private(set) var expiresAt: Date?
   private(set) var people: [VoicePerson] = []
   private(set) var error: String?
+  private(set) var isPushToTalk = false
+  private(set) var isPressingToTalk = false
 
   @ObservationIgnored private var room: Room?
   @ObservationIgnored private var expiryTask: Task<Void, Never>?
   @ObservationIgnored private var previousSpeakerPreference: Bool?
   @ObservationIgnored private var generation = 0
+  @ObservationIgnored private var talkLimitTask: Task<Void, Never>?
+  @ObservationIgnored private var previousAdvancedDucking = false
+  @ObservationIgnored private var previousDuckingLevel: AudioDuckingLevel = .min
+  @ObservationIgnored private var microphoneRequested = false
 
   func join(grant: VoiceGrant, baseURL: URL, title: String) async throws {
+    #if targetEnvironment(simulator)
+      try await connectTransport(grant: grant, baseURL: baseURL, title: title)
+    #else
+      try await IntercomCallCoordinator.shared.begin(voice: self, title: title) { [weak self] in
+        guard let self else { throw CancellationError() }
+        try await self.connectTransport(grant: grant, baseURL: baseURL, title: title)
+      }
+    #endif
+  }
+
+  private func connectTransport(grant: VoiceGrant, baseURL: URL, title: String) async throws {
     guard !isBusy else { return }
     generation += 1
     let version = generation
@@ -40,6 +57,10 @@ final class VoiceIntercom: NSObject, RoomDelegate {
     components?.scheme = baseURL.scheme == "https" ? "wss" : "ws"
     guard let url = components?.url else { throw APIError.configuration }
     previousSpeakerPreference = AudioManager.shared.isSpeakerOutputPreferred
+    previousAdvancedDucking = AudioManager.shared.isAdvancedDuckingEnabled
+    previousDuckingLevel = AudioManager.shared.duckingLevel
+    AudioManager.shared.isAdvancedDuckingEnabled = true
+    AudioManager.shared.duckingLevel = .mid
     AudioManager.shared.isSpeakerOutputPreferred = false
     let room = Room(
       delegate: self,
@@ -66,6 +87,11 @@ final class VoiceIntercom: NSObject, RoomDelegate {
   }
 
   func setMicrophone(_ enabled: Bool) async {
+    microphoneRequested = enabled
+    if !enabled {
+      talkLimitTask?.cancel()
+      isPressingToTalk = false
+    }
     guard enabled ? isConnected : isInSession, !isChangingMicrophone, let room else { return }
     let version = generation
     isChangingMicrophone = true
@@ -82,11 +108,19 @@ final class VoiceIntercom: NSObject, RoomDelegate {
       guard version == generation, self.room === room,
         !enabled || room.connectionState == .connected
       else { return }
-      try await room.localParticipant.setMicrophone(enabled: enabled)
+      let desired = enabled && microphoneRequested && (!isPushToTalk || isPressingToTalk)
+      #if !targetEnvironment(simulator)
+        try IntercomCallCoordinator.shared.allowMicrophone(desired)
+      #endif
+      try await room.localParticipant.setMicrophone(enabled: desired)
       guard version == generation, self.room === room else { return }
-      isMicrophoneOn = enabled
+      isMicrophoneOn = desired
+      if desired && (!microphoneRequested || (isPushToTalk && !isPressingToTalk)) {
+        try await room.localParticipant.setMicrophone(enabled: false)
+        isMicrophoneOn = false
+      }
       if isConnected {
-        status = enabled ? "Connected · microphone on" : "Connected · microphone off"
+        status = isMicrophoneOn ? "Connected · microphone on" : "Connected · microphone off"
       }
       error = nil
     } catch {
@@ -97,9 +131,21 @@ final class VoiceIntercom: NSObject, RoomDelegate {
   }
 
   func leave() async {
+    #if targetEnvironment(simulator)
+      await disconnectTransport()
+    #else
+      await IntercomCallCoordinator.shared.end(voice: self)
+    #endif
+  }
+
+  func disconnectTransport() async {
     generation += 1
     expiryTask?.cancel()
     expiryTask = nil
+    talkLimitTask?.cancel()
+    talkLimitTask = nil
+    isPressingToTalk = false
+    microphoneRequested = false
     let previous = room
     room = nil
     isConnected = false
@@ -110,6 +156,8 @@ final class VoiceIntercom: NSObject, RoomDelegate {
     expiresAt = nil
     status = "Intercom off"
     await previous?.disconnect()
+    AudioManager.shared.isAdvancedDuckingEnabled = previousAdvancedDucking
+    AudioManager.shared.duckingLevel = previousDuckingLevel
     if let preference = previousSpeakerPreference {
       AudioManager.shared.isSpeakerOutputPreferred = preference
       previousSpeakerPreference = nil
@@ -117,6 +165,34 @@ final class VoiceIntercom: NSObject, RoomDelegate {
   }
 
   func showError(_ message: String) { error = message }
+
+  func audioInterrupted() async {
+    await setMicrophone(false)
+    if isInSession { status = "Call audio interrupted · microphone off" }
+  }
+
+  func setPushToTalk(_ enabled: Bool) async {
+    isPushToTalk = enabled
+    isPressingToTalk = false
+    await setMicrophone(false)
+  }
+
+  func pressToTalk(_ pressed: Bool) {
+    isPressingToTalk = pressed
+    Task { await setMicrophone(pressed) }
+  }
+
+  func speakBriefly() async {
+    guard isConnected else { return }
+    isPressingToTalk = true
+    await setMicrophone(true)
+    talkLimitTask?.cancel()
+    talkLimitTask = Task { [weak self] in
+      do { try await Task.sleep(for: .seconds(30)) } catch { return }
+      self?.isPressingToTalk = false
+      await self?.setMicrophone(false)
+    }
+  }
 
   private func updatePeople(_ room: Room) {
     guard self.room === room else { return }

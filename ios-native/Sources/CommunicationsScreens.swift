@@ -377,16 +377,43 @@ struct IntercomCard: View {
             )
             .font(.subheadline).foregroundStyle(person.speaking ? Heritage.brass : Heritage.muted)
           }
-          Button {
-            Task { await voice.setMicrophone(!voice.isMicrophoneOn) }
-          } label: {
-            Label(
-              voice.isMicrophoneOn ? "Mute microphone" : "Turn microphone on",
-              systemImage: voice.isMicrophoneOn ? "mic.slash" : "mic")
-          }.buttonStyle(BrassButtonStyle(outlined: !voice.isMicrophoneOn)).disabled(
-            voice.isChangingMicrophone || (!voice.isConnected && !voice.isMicrophoneOn)
+          Toggle(
+            "Push-to-talk",
+            isOn: Binding(
+              get: { voice.isPushToTalk },
+              set: { enabled in Task { await voice.setPushToTalk(enabled) } })
           )
-          .accessibilityIdentifier("voice.microphone")
+          .tint(Heritage.brass).foregroundStyle(Heritage.paper)
+          if voice.isPushToTalk {
+            Button {
+            } label: {
+              Text(voice.isPressingToTalk ? "Speaking · release to mute" : "Hold to speak").font(
+                .headline
+              ).foregroundStyle(Heritage.ink)
+                .frame(maxWidth: .infinity, minHeight: 64).background(
+                  Heritage.brass, in: RoundedRectangle(cornerRadius: 14))
+            }.buttonStyle(.plain)
+              .onLongPressGesture(minimumDuration: .infinity, pressing: voice.pressToTalk) {}
+              .accessibilityAddTraits(.isButton).accessibilityLabel("Push-to-talk")
+              .accessibilityAction { Task { await voice.speakBriefly() } }
+              .accessibilityIdentifier("voice.pushToTalk")
+              .onDisappear { voice.pressToTalk(false) }
+          } else {
+            Button {
+              Task { await voice.setMicrophone(!voice.isMicrophoneOn) }
+            } label: {
+              Label(
+                voice.isMicrophoneOn ? "Mute microphone" : "Turn microphone on",
+                systemImage: voice.isMicrophoneOn ? "mic.slash" : "mic")
+            }.buttonStyle(BrassButtonStyle(outlined: !voice.isMicrophoneOn)).disabled(
+              voice.isChangingMicrophone || (!voice.isConnected && !voice.isMicrophoneOn)
+            )
+            .accessibilityIdentifier("voice.microphone")
+          }
+          Text(
+            "Your iPhone and headset manage audio routing and music levels. Set controls before moving."
+          )
+          .font(.caption).foregroundStyle(Heritage.muted)
           Button("Leave intercom") { Task { await community.leaveVoice() } }
             .buttonStyle(BrassButtonStyle(outlined: true)).accessibilityIdentifier("voice.leave")
           if let expiry = voice.expiresAt {
